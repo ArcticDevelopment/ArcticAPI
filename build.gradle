@@ -9,8 +9,15 @@ version '1.0.0'
 repositories {
     mavenCentral()
     mavenLocal()
+
+    maven { url 'https://jitpack.io' }
+
+//    maven { url 'https://nexus.savagelabs.net/repository/maven-public/' }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+
+//    Factions Plugins
+    implementation 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'
 }
