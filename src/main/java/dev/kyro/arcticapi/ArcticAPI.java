@@ -4,7 +4,7 @@ public class ArcticAPI {
 
     public ArcticAPI() {
 
-        loadHooks();
+//        loadHooks();
     }
 
     public static void loadHooks() {
