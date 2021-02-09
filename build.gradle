@@ -7,7 +7,9 @@ version '1.0.0'
 
 repositories {
     mavenCentral()
-    mavenLocal()
+
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
 
     maven { url 'https://jitpack.io' }
 
@@ -15,8 +17,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+    compileClasspath 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
 //    Factions Plugins
-    implementation 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'
+//    compileClasspath 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'
 }
