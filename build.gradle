@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'java-library'
 }
 
 group 'dev.kyro'
@@ -13,6 +12,7 @@ repositories {
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "https://jitpack.io" }
 
+//    Factions Dependency locations
     maven { url "https://repo.codemc.org/repository/maven-public" }
     maven { url "http://jcenter.bintray.com" }
     maven { url "https://libraries.minecraft.net/" }
@@ -27,8 +27,6 @@ repositories {
     maven { url "http://repo.mvdw-software.be/content/groups/public/" }
     maven { url "https://papermc.io/repo/repository/maven-public/" }
     maven { url "https://libraries.minecraft.net" }
-
-//    maven { url 'https://nexus.savagelabs.net/repository/maven-public/' }
 }
 
 dependencies {
