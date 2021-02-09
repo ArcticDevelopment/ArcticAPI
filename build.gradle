@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    compileClasspath 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+    implementation 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
 
 //    Factions Plugins
-    compileClasspath 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'
+    implementation 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'
 }
