@@ -8,12 +8,12 @@ public class AOutput {
 
     public static void send(Player player, String message) {
 
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ArcticAPI.getPrefix() + message));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ArcticAPI.prefix + message));
     }
 
     public static void error(Player player, String message) {
 
-        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ArcticAPI.getErrorPrefix() + message));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&', ArcticAPI.errorPrefix + message));
     }
 
     public static void color(Player player, String message) {
