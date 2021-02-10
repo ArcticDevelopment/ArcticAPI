@@ -9,7 +9,7 @@ public class ArcticAPI {
     public static String prefix = "";
     public static String errorPrefix = "";
 
-    public static void setup(JavaPlugin plugin, String prefix, String errorPrefix) {
+    public static void init(JavaPlugin plugin, String prefix, String errorPrefix) {
 
         ArcticAPI.plugin = plugin;
 
