@@ -74,7 +74,7 @@ public class AInventoryBuilder {
 
             ItemStack item = inventory.getItem(slot);
 
-            item.addUnsafeEnchantment(Enchantment.DURABILITY, 0);
+            item.addUnsafeEnchantment(Enchantment.LUCK, 0);
 
             if(!hideFlag) continue;
 

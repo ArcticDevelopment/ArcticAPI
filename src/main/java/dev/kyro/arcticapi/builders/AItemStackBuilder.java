@@ -2,6 +2,8 @@ package dev.kyro.arcticapi.builders;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -31,14 +33,13 @@ public class AItemStackBuilder {
     public AItemStackBuilder(Material material, int amount, int data) {
 
         itemStack = new ItemStack(material, amount, (short) data);
-        itemMeta = itemStack.hasItemMeta() ? itemStack.getItemMeta() : Bukkit.getItemFactory().getItemMeta(material);
         buildItemMeta();
     }
 
     public AItemStackBuilder setName(String name) {
 
         itemMeta.setDisplayName(name);
-        updateItem();
+        updateItemMeta();
 
         return this;
     }
@@ -46,7 +47,7 @@ public class AItemStackBuilder {
     public AItemStackBuilder setLore(List<String> lore) {
 
         itemMeta.setLore(lore);
-        updateItem();
+        updateItemMeta();
 
         return this;
     }
@@ -54,7 +55,19 @@ public class AItemStackBuilder {
     public AItemStackBuilder setLore(ALoreBuilder loreBuilder) {
 
         itemMeta.setLore(loreBuilder.lore);
-        updateItem();
+        updateItemMeta();
+
+        return this;
+    }
+
+    public AItemStackBuilder addEnchantGlint(boolean hideFlag) {
+
+        itemStack.addUnsafeEnchantment(Enchantment.LUCK, 0);
+
+        if(!hideFlag) return this;
+
+        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        updateItemMeta();
 
         return this;
     }
@@ -64,7 +77,7 @@ public class AItemStackBuilder {
         itemMeta = itemStack.hasItemMeta() ? itemStack.getItemMeta() : Bukkit.getItemFactory().getItemMeta(itemStack.getType());
     }
 
-    private void updateItem() {
+    private void updateItemMeta() {
 
         itemStack.setItemMeta(itemMeta);
     }
