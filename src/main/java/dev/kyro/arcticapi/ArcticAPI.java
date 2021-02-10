@@ -1,6 +1,7 @@
 package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.data.AConfig;
+import dev.kyro.arcticapi.data.APlayerData;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ArcticAPI {
@@ -16,6 +17,8 @@ public class ArcticAPI {
 
         ArcticAPI.prefix = prefix;
         ArcticAPI.errorPrefix = errorPrefix;
+
+        APlayerData.init();
     }
 
     public static void configInit(JavaPlugin plugin, String prefix, String errorPrefix) {
@@ -24,5 +27,7 @@ public class ArcticAPI {
 
         ArcticAPI.prefix = AConfig.getString(prefix);
         ArcticAPI.errorPrefix = AConfig.getString(errorPrefix);
+
+        APlayerData.init();
     }
 }
