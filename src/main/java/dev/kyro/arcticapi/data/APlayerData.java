@@ -1,7 +1,7 @@
 package dev.kyro.arcticapi.data;
 
 import dev.kyro.arcticapi.ArcticAPI;
-import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +31,7 @@ public class APlayerData {
         }
     }
 
-    public static ConfigurationSection getPlayerData(UUID pUUID) {
+    public static FileConfiguration getPlayerData(UUID pUUID) {
 
         if(!playerData.containsKey(pUUID)) return createPlayerData(pUUID).playerdata;
         APlayer aPlayer = playerData.get(pUUID);
@@ -55,8 +55,8 @@ public class APlayerData {
 
         if(!playerFile.exists()) {
             try {
-                playerFile.mkdirs();
-                playerFile.createNewFile();
+                boolean ignored = playerFile.mkdirs();
+                boolean ignored2 = playerFile.createNewFile();
             } catch(IOException exception) {
 
                 exception.printStackTrace();
