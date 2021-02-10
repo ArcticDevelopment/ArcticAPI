@@ -1,7 +1,6 @@
 package dev.kyro.arcticapi.misc;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class AOutput {
@@ -33,15 +32,5 @@ public class AOutput {
     public void raw(Player player, String message) {
 
         player.sendMessage(message);
-    }
-
-    public void playSound(Player player, String sound, float vol, float pitch) {
-
-        playSound(player, player.getLocation(), sound, vol, pitch);
-    }
-
-    public void playSound(Player player, Location loc, String sound, float vol, float pitch) {
-
-        player.playSound(loc, sound, vol, pitch);
     }
 }

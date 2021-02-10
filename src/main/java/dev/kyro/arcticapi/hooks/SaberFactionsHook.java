@@ -4,7 +4,7 @@ import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
-import dev.kyro.arcticapi.interfaces.FactionsPlugin;
+import dev.kyro.arcticapi.hooks.interfaces.FactionsPlugin;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

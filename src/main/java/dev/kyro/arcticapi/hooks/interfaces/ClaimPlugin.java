@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.interfaces;
+package dev.kyro.arcticapi.hooks.interfaces;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;
