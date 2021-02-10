@@ -1,6 +1,7 @@
 package dev.kyro.arcticapi.misc;
 
 import dev.kyro.arcticapi.ArcticAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -24,5 +25,10 @@ public class AOutput {
     public static void raw(Player player, String message) {
 
         player.sendMessage(message);
+    }
+
+    public static void broadcast(String message) {
+
+        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
     }
 }
