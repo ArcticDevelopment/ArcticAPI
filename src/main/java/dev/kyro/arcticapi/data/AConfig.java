@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.config;
+package dev.kyro.arcticapi.data;
 
 import dev.kyro.arcticapi.ArcticAPI;
 import org.bukkit.configuration.file.FileConfiguration;
