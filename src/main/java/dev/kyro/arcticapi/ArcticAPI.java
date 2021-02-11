@@ -19,7 +19,7 @@ public class ArcticAPI {
         ArcticAPI.prefix = prefix;
         ArcticAPI.errorPrefix = errorPrefix;
 
-        APlayerData.init();
+        setup();
     }
 
     public static void configInit(JavaPlugin plugin, String prefix, String errorPrefix) {
@@ -28,6 +28,11 @@ public class ArcticAPI {
 
         ArcticAPI.prefix = AConfig.getString(prefix);
         ArcticAPI.errorPrefix = AConfig.getString(errorPrefix);
+
+        setup();
+    }
+
+    public static void setup() {
 
         APlayerData.init();
     }
