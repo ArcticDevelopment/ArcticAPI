@@ -9,6 +9,11 @@ public class AConfig {
 
     public static FileConfiguration config = ArcticAPI.plugin.getConfig();
 
+    public static void set(String path, Object value) {
+
+        config.set(path, value);
+    }
+
     public static String getString(String path) {
 
         return config.getString(path);
