@@ -9,14 +9,28 @@ public class AConfig {
 
     public static FileConfiguration config = ArcticAPI.plugin.getConfig();
 
-    public static void set(String path, Object value) {
+    public static void set(String path, Object object) {
 
-        config.set(path, value);
+        config.set(path, object);
+    }
+
+    public static void addToList(String path, Object object) {
+
+        List<Object> list = getList(path);
+        list.add(object);
+
+        set(path, list);
     }
 
     public static Object get(String path) {
 
         return config.get(path);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Object> getList(String path) {
+
+        return (List<Object>) config.getList(path);
     }
 
     public static String getString(String path) {
