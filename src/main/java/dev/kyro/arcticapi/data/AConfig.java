@@ -14,11 +14,6 @@ public class AConfig {
 
     public static void set(String path, LinkedHashMap<String, Object> map) {
 
-        for(Map.Entry<String, Object> stringObjectEntry : map.entrySet()) {
-            System.out.println("set: " + stringObjectEntry.getValue());
-        }
-        System.out.println(map.toString());
-
         for(Map.Entry<String, Object> entry : map.entrySet()) {
 
             set(path + "." + entry.getKey(), entry.getValue());

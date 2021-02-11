@@ -77,7 +77,7 @@ public class ASerializer {
         if(!itemStack.hasItemMeta()) itemStack.setItemMeta(Bukkit.getItemFactory().getItemMeta(itemStack.getType()));
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        itemMap.put("material", itemStack.getType());
+        itemMap.put("material", itemStack.getType().toString());
         itemMap.put("amount", itemStack.getAmount());
         itemMap.put("data", itemStack.getDurability());
         itemMap.put("name", itemMeta.getDisplayName() == null ? "" : itemMeta.getDisplayName());
