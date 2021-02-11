@@ -14,6 +14,11 @@ public class AConfig {
         config.set(path, value);
     }
 
+    public static Object get(String path) {
+
+        return config.get(path);
+    }
+
     public static String getString(String path) {
 
         return config.getString(path);
