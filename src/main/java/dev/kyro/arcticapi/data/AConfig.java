@@ -22,6 +22,14 @@ public class AConfig {
         set(path, list);
     }
 
+    public static void removeFromList(String path, Object object) {
+
+        List<Object> list = getList(path);
+        list.remove(object);
+
+        set(path, list);
+    }
+
     public static Object get(String path) {
 
         return config.get(path);
