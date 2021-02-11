@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+@SuppressWarnings({"unused"})
 public interface ClaimPlugin {
 
     boolean isFriendly(Player player, Player otherPlayer);

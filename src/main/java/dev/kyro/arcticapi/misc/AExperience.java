@@ -2,6 +2,7 @@ package dev.kyro.arcticapi.misc;
 
 import org.bukkit.entity.Player;
 
+@SuppressWarnings("unused")
 public class AExperience {
 
     public static int getExp(Player player) {

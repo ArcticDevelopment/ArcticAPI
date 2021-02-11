@@ -9,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+@SuppressWarnings("unused")
 public class SaberFactionsHook implements FactionsPlugin {
 
     @Override

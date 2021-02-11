@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class AConfig {
 
     public static FileConfiguration config = ArcticAPI.plugin.getConfig();

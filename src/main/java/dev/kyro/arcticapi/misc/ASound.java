@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import java.util.Collection;
 
+@SuppressWarnings("unused")
 public class ASound {
 
     public static void playNearby(Sound sound, Location location, double range) {

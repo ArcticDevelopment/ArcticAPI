@@ -9,6 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class AItemStackBuilder {
 
     public ItemStack itemStack;

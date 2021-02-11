@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("unused")
 public class AInventoryBuilder {
 
     public Inventory inventory;

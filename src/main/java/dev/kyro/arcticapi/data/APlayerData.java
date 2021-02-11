@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
+@SuppressWarnings("unused")
 public class APlayerData {
 
     private static HashMap<UUID, APlayer> playerData = new HashMap<>();
