@@ -72,6 +72,8 @@ public class ASerializer {
 
         LinkedHashMap<String, Object> itemMap = new LinkedHashMap<>();
 
+        if(!itemStack.hasItemMeta()) itemStack.setItemMeta(Bukkit.getItemFactory().getItemMeta(itemStack.getType()));
+
         itemMap.put("material", itemStack.getType());
         itemMap.put("amount", itemStack.getAmount());
         itemMap.put("data", itemStack.getDurability());
