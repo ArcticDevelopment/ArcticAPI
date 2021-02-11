@@ -3,12 +3,22 @@ package dev.kyro.arcticapi.data;
 import dev.kyro.arcticapi.ArcticAPI;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings("unused")
 public class AConfig {
 
     public static FileConfiguration config = ArcticAPI.plugin.getConfig();
+
+    public static void set(String path, LinkedHashMap<String, Object> map) {
+
+        for(Map.Entry<String, Object> entry : map.entrySet()) {
+
+            set(path + "." + entry.getKey(), entry.getValue());
+        }
+    }
 
     public static void set(String path, Object object) {
 
