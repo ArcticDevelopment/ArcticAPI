@@ -11,7 +11,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ASerializer {
 
@@ -82,11 +81,6 @@ public class ASerializer {
         itemMap.put("data", itemStack.getDurability());
         itemMap.put("name", itemMeta.getDisplayName() == null ? "" : itemMeta.getDisplayName());
         itemMap.put("lore", itemMeta.getLore() == null ? "" : itemMeta.getLore());
-
-        System.out.println(itemMap.toString());
-        for(Map.Entry<String, Object> stringObjectEntry : itemMap.entrySet()) {
-            System.out.println("ser: " + stringObjectEntry.getValue());
-        }
 
         return itemMap;
     }
