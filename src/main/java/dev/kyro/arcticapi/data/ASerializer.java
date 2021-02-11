@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -74,12 +75,13 @@ public class ASerializer {
         LinkedHashMap<String, Object> itemMap = new LinkedHashMap<>();
 
         if(!itemStack.hasItemMeta()) itemStack.setItemMeta(Bukkit.getItemFactory().getItemMeta(itemStack.getType()));
+        ItemMeta itemMeta = itemStack.getItemMeta();
 
         itemMap.put("material", itemStack.getType());
         itemMap.put("amount", itemStack.getAmount());
         itemMap.put("data", itemStack.getDurability());
-        itemMap.put("name", itemStack.getItemMeta().getDisplayName());
-        itemMap.put("lore", itemStack.getItemMeta().getLore());
+        itemMap.put("name", itemMeta.getDisplayName() == null ? "" : itemMeta.getDisplayName());
+        itemMap.put("lore", itemMeta.getLore() == null ? "" : itemMeta.getLore());
 
         System.out.println(itemMap.toString());
         for(Map.Entry<String, Object> stringObjectEntry : itemMap.entrySet()) {
