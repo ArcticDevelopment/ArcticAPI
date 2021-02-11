@@ -76,6 +76,7 @@ public class AItemStackBuilder {
     private void buildItemMeta() {
 
         itemMeta = itemStack.hasItemMeta() ? itemStack.getItemMeta() : Bukkit.getItemFactory().getItemMeta(itemStack.getType());
+        updateItemMeta();
     }
 
     private void updateItemMeta() {
