@@ -9,6 +9,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ASerializer {
 
         String[] locParts = locString.split(",");
 
-        System.out.println(locParts);
+        System.out.println(Arrays.toString(locParts));
 
         if(locParts.length != 4) return null;
 
