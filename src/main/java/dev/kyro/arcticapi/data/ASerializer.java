@@ -14,12 +14,9 @@ import java.util.List;
 
 public class ASerializer {
 
-    public static Location deserializeLocation(String path) {
+    public static Location deserializeLocation(String locString) {
 
-        String locString = AConfig.config.getString(path);
-        if(locString == null) return null;
-
-        String[] locParts = locString.split(", ");
+        String[] locParts = locString.split(",");
 
         if(locParts.length != 4) return null;
 
@@ -40,9 +37,7 @@ public class ASerializer {
         }
     }
 
-    public static ItemStack deserializeItem(String path) {
-
-        ConfigurationSection configSection = AConfig.config.getConfigurationSection(path);
+    public static ItemStack deserializeItem(ConfigurationSection configSection) {
 
         try {
 
