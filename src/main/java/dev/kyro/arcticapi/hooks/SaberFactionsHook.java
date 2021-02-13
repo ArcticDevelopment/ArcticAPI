@@ -1,10 +1,9 @@
 package dev.kyro.arcticapi.hooks;
 
-import com.massivecraft.factions.Board;
-import com.massivecraft.factions.FLocation;
-import com.massivecraft.factions.FPlayer;
-import com.massivecraft.factions.FPlayers;
+import com.massivecraft.factions.*;
+import com.massivecraft.factions.struct.Relation;
 import dev.kyro.arcticapi.hooks.enums.FactionRank;
+import dev.kyro.arcticapi.hooks.enums.FactionRelation;
 import dev.kyro.arcticapi.hooks.interfaces.FactionsPlugin;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -39,7 +38,6 @@ public class SaberFactionsHook implements FactionsPlugin {
     public boolean inUnclaimed(Player player) {
 
         FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
-        if(fPlayer == null) return false;
 
         return fPlayer.getFaction().isWilderness();
     }
@@ -61,7 +59,6 @@ public class SaberFactionsHook implements FactionsPlugin {
     public FactionRank getFactionRank(Player player) {
 
         FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
-        if(fPlayer == null) return null;
 
         switch(fPlayer.getRole()) {
             case LEADER:
@@ -74,6 +71,28 @@ public class SaberFactionsHook implements FactionsPlugin {
                 return FactionRank.MEMBER;
             case RECRUIT:
                 return FactionRank.RECRUIT;
+        }
+        return null;
+    }
+
+    @Override
+    public FactionRelation getRelation(Player player, Player otherPlayer) {
+
+        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
+        FPlayer fOtherPlayer = FPlayers.getInstance().getByPlayer(player);
+
+        Relation relation = fPlayer.getRelationTo(fOtherPlayer);
+        switch(relation) {
+            case MEMBER:
+                return FactionRelation.MEMBER;
+            case ALLY:
+                return FactionRelation.ALLY;
+            case TRUCE:
+                return FactionRelation.TRUCE;
+            case NEUTRAL:
+                return FactionRelation.NEUTRAL;
+            case ENEMY:
+                return FactionRelation.ENEMY;
         }
         return null;
     }

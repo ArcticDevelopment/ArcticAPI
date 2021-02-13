@@ -81,7 +81,7 @@ public enum AHook {
             if (plugin.isPluginLoaded()) {
                 switch (plugin) {
                     case SABER_FACTIONS:
-                        AHookManager.factionsPlugin = new SaberFactionsHook();
+                        AFactionsHook.factionsPlugin = new SaberFactionsHook();
                         return;
                 }
             }
