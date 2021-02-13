@@ -32,4 +32,9 @@ public class AOutput {
 
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', message));
     }
+
+    public static void log(String message) {
+
+        System.out.println(ChatColor.translateAlternateColorCodes('&', message));
+    }
 }
