@@ -15,7 +15,7 @@ public class APlayerData {
 
     public static void init() {
 
-        File folder = new File(ArcticAPI.plugin.getDataFolder(), "playerdata/");
+        File folder = new File(ArcticAPI.PLUGIN.getDataFolder(), "playerdata/");
         if(!folder.exists()) return;
         File[] files = folder.listFiles();
 
@@ -52,7 +52,7 @@ public class APlayerData {
 
     public static APlayer createPlayerData(UUID pUUID) {
 
-        File playerFile = new File(ArcticAPI.plugin.getDataFolder(), "playerdata/" + pUUID + ".yml");
+        File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder(), "playerdata/" + pUUID + ".yml");
 
         if(!playerFile.exists()) {
             try {
