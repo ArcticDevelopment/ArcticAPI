@@ -8,9 +8,9 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 
 public class ExampleUI extends AInventoryUI {
 
-    public ExampleUI() {
+    public ExampleUI(String name, int rows) {
 
-        inventory = Bukkit.createInventory(this, 27, "Example inventory");
+        inventory = Bukkit.createInventory(this, getSlots(rows), name);
     }
 
     @Override

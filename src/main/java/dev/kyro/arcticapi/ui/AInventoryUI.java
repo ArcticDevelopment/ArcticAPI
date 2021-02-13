@@ -16,6 +16,11 @@ public abstract class AInventoryUI implements InventoryHolder {
 
     public abstract void onClose(InventoryCloseEvent event);
 
+    public static int getSlots(int rows) {
+
+        return Math.max(Math.min(rows, 6), 1) * 9;
+    }
+
     @Override
     public Inventory getInventory() {
 
