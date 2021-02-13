@@ -3,6 +3,8 @@ package dev.kyro.arcticapi;
 import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.hooks.AHook;
+import dev.kyro.arcticapi.ui.AInventoryUIManager;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
@@ -41,5 +43,7 @@ public class ArcticAPI {
 
         APlayerData.init();
         AHook.getHooks();
+
+        Bukkit.getPluginManager().registerEvents(new AInventoryUIManager(), PLUGIN);
     }
 }
