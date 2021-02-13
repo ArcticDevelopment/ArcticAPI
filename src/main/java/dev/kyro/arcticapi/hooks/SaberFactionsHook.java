@@ -4,6 +4,7 @@ import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
+import dev.kyro.arcticapi.hooks.enums.FactionRank;
 import dev.kyro.arcticapi.hooks.interfaces.FactionsPlugin;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -54,5 +55,26 @@ public class SaberFactionsHook implements FactionsPlugin {
     @Override
     public boolean canBreakBlock(Player player, Block block) {
         return false;
+    }
+
+    @Override
+    public FactionRank getFactionRank(Player player) {
+
+        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
+        if(fPlayer == null) return null;
+
+        switch(fPlayer.getRole()) {
+            case LEADER:
+                return FactionRank.LEADER;
+            case COLEADER:
+                return FactionRank.COLEADER;
+            case MODERATOR:
+                return FactionRank.MODERATOR;
+            case NORMAL:
+                return FactionRank.MEMBER;
+            case RECRUIT:
+                return FactionRank.RECRUIT;
+        }
+        return null;
     }
 }
