@@ -1,5 +1,6 @@
 package dev.kyro.arcticapi.ui;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -11,7 +12,13 @@ public abstract class AInventoryUI implements InventoryHolder {
     public Inventory inventory;
 
     public AInventoryUI(Inventory inventory) {
+
         this.inventory = inventory;
+    }
+
+    public AInventoryUI(String name, int rows) {
+
+        inventory = Bukkit.createInventory(this, getSlots(rows), name);
     }
 
     public abstract boolean onClick(InventoryClickEvent event);

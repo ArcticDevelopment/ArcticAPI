@@ -1,16 +1,19 @@
 package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.ui.AInventoryUI;
-import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.inventory.Inventory;
 
 public class ExampleUI extends AInventoryUI {
 
-    public ExampleUI(String name, int rows) {
+    public ExampleUI(Inventory inventory) {
+        super(inventory);
+    }
 
-        inventory = Bukkit.createInventory(this, getSlots(rows), name);
+    public ExampleUI(String name, int rows) {
+        super(name, rows);
     }
 
     @Override
