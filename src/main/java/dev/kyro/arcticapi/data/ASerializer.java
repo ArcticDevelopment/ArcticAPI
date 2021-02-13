@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class ASerializer {
 
     public static Location deserializeLocation(String locString) {
