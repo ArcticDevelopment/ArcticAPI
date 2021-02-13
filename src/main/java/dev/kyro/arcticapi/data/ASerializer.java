@@ -9,7 +9,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -20,21 +19,15 @@ public class ASerializer {
 
         String[] locParts = locString.split(",");
 
-        System.out.println(Arrays.toString(locParts));
-
         if(locParts.length != 4) return null;
 
         try {
 
             World world = Bukkit.getWorld(locParts[0].trim());
 
-            System.out.println(world.toString());
-
             double x = Double.parseDouble(locParts[1].trim());
             double y = Double.parseDouble(locParts[2].trim());
             double z = Double.parseDouble(locParts[3].trim());
-
-            System.out.println(x + " " + y + " " + z);
 
             return new Location(world, x, y, z);
 
