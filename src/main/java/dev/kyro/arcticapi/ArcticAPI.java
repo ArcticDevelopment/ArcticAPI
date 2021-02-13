@@ -2,6 +2,7 @@ package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.data.APlayerData;
+import dev.kyro.arcticapi.hooks.AHookManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @SuppressWarnings("unused")
@@ -35,5 +36,6 @@ public class ArcticAPI {
     public static void setup() {
 
         APlayerData.init();
+        AHookManager.SupportedPlugins.printHooks();
     }
 }
