@@ -3,13 +3,21 @@ package dev.kyro.arcticapi.ui;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-public interface AInventoryUI extends InventoryHolder {
+public abstract class AInventoryUI implements InventoryHolder {
 
-    boolean onClick(InventoryClickEvent event);
+    public Inventory inventory;
 
-    void onOpen(InventoryOpenEvent event);
+    public AInventoryUI(Inventory inventory) {
 
-    void onClose(InventoryCloseEvent event);
+        this.inventory = inventory;
+    }
+
+    public abstract boolean onClick(InventoryClickEvent event);
+
+    public abstract void onOpen(InventoryOpenEvent event);
+
+    public abstract void onClose(InventoryCloseEvent event);
 }
