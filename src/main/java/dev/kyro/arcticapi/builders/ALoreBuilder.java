@@ -18,7 +18,7 @@ public class ALoreBuilder {
 
     public ALoreBuilder(ItemStack itemStack) {
 
-        if(itemStack.hasItemMeta()) lore = itemStack.getItemMeta().getLore();
+        if(itemStack.hasItemMeta() && itemStack.getItemMeta().hasLore()) lore = itemStack.getItemMeta().getLore();
     }
 
     public ALoreBuilder addLore(String... lines) {
