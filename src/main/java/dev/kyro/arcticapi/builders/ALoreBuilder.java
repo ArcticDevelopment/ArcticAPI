@@ -21,10 +21,15 @@ public class ALoreBuilder {
         if(itemStack.hasItemMeta() && itemStack.getItemMeta().hasLore()) lore = itemStack.getItemMeta().getLore();
     }
 
+    public ALoreBuilder addLore(List<String> lines) {
+
+        lore.addAll(lines);
+        return this;
+    }
+
     public ALoreBuilder addLore(String... lines) {
 
         lore.addAll(Arrays.asList(lines));
-
         return this;
     }
 
