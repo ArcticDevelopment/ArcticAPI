@@ -12,6 +12,10 @@ public class ALoreBuilder {
 
     public List<String> lore = new ArrayList<>();
 
+    public ALoreBuilder() {
+
+    }
+
     public ALoreBuilder(ItemStack itemStack) {
 
         if(itemStack.hasItemMeta()) lore = itemStack.getItemMeta().getLore();
