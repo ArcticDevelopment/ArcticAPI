@@ -52,7 +52,7 @@ public class ASerializer {
                     .setName(name)
                     .setLore(lore);
 
-            return itemStackBuilder.itemStack;
+            return itemStackBuilder.getItemStack();
         } catch(Exception exception) {
 
             exception.printStackTrace();
@@ -60,11 +60,18 @@ public class ASerializer {
         }
     }
 
+    /**
+     * Saves a location in the form of "world, x, y, z"
+     */
     public static String serializeLocation(Location location) {
 
         return location.getWorld().getName() + ", " + location.getX() + ", " + location.getY() + ", " + location.getZ();
     }
 
+    /**
+     * Converts an inventory into a configuration section which details
+     * basic information: material, amount, data, name, lore.
+     */
     public static LinkedHashMap<String, Object> serializeItem(ItemStack itemStack) {
 
         LinkedHashMap<String, Object> itemMap = new LinkedHashMap<>();

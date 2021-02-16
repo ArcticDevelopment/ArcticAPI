@@ -3,10 +3,8 @@ package dev.kyro.arcticapi.builders;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -15,18 +13,27 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class AInventoryBuilder {
 
-    public Inventory inventory;
+    private final Inventory inventory;
 
-    public AInventoryBuilder(Player owner, int size, String name) {
+    /**
+     * Builds an inventory from the ground.
+     */
+    public AInventoryBuilder(InventoryHolder owner, int size, String name) {
 
         inventory = Bukkit.createInventory(owner, size, name);
     }
 
+    /**
+     * Build around a pre-existing inventory.
+     */
     public AInventoryBuilder(Inventory inventory) {
 
         this.inventory = inventory;
     }
 
+    /**
+     * Creates a border going around the outside of the GUI.
+     */
     public AInventoryBuilder createBorder(Material material, int toData) {
 
         byte data = (byte) toData;
@@ -42,6 +49,9 @@ public class AInventoryBuilder {
         return this;
     }
 
+    /**
+     * Sets any amount of slots in the inventory.
+     */
     public AInventoryBuilder setSlots(Material material, int toData, int... slots) {
 
         for(int slot : slots) {
@@ -52,6 +62,12 @@ public class AInventoryBuilder {
         return this;
     }
 
+    /**
+     * Sets a single slot in the inventory.
+     *
+     * @param name the name of the item; accepts null for no name
+     * @param lore the lore of the item; accepts null for no lore
+     */
     public AInventoryBuilder setSlot(Material material, int toData, int slot, String name, ArrayList<String> lore) {
 
         byte data = (byte) toData;
@@ -67,23 +83,23 @@ public class AInventoryBuilder {
         return this;
     }
 
+    /**
+     * Adds an enchant glint to the items in given inventory slots.
+     * @param hideFlag whether to add the item flag that hides enchants
+     */
     public AInventoryBuilder addEnchantGlint(boolean hideFlag, int... slots) {
 
         for(int slot : slots) {
 
-            if(inventory.getItem(slot).getType() == Material.AIR) return this;
-
             ItemStack item = inventory.getItem(slot);
-
-            item.addUnsafeEnchantment(Enchantment.LUCK, 0);
-
-            if(!hideFlag) continue;
-
-            ItemMeta itemMeta = item.getItemMeta();
-            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-            item.setItemMeta(itemMeta);
+            AItemStackBuilder itemStackBuilder = new AItemStackBuilder(item).addEnchantGlint(hideFlag);
         }
 
         return this;
+    }
+
+    public Inventory getInventory() {
+
+        return inventory;
     }
 }

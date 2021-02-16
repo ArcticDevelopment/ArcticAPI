@@ -12,28 +12,40 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class AItemStackBuilder {
 
-    public ItemStack itemStack;
-    public ItemMeta itemMeta;
+    private final ItemStack itemStack;
+    private ItemMeta itemMeta;
 
-    public AItemStackBuilder(ItemStack itemStack) {
-
-        this.itemStack = itemStack;
-        buildItemMeta();
-    }
-
+    /**
+     * Builds an item from the ground.
+     */
     public AItemStackBuilder(Material material) {
 
         this(material, 0);
     }
 
+    /**
+     * Builds an item from the ground.
+     */
     public AItemStackBuilder(Material material, int amount) {
 
         this(material, amount, 0);
     }
 
+    /**
+     * Builds an item from the ground.
+     */
     public AItemStackBuilder(Material material, int amount, int data) {
 
         itemStack = new ItemStack(material, amount, (short) data);
+        buildItemMeta();
+    }
+
+    /**
+     * Build around a pre-existing item.
+     */
+    public AItemStackBuilder(ItemStack itemStack) {
+
+        this.itemStack = itemStack;
         buildItemMeta();
     }
 
@@ -55,13 +67,19 @@ public class AItemStackBuilder {
 
     public AItemStackBuilder setLore(ALoreBuilder loreBuilder) {
 
-        itemMeta.setLore(loreBuilder.lore);
+        itemMeta.setLore(loreBuilder.getLore());
         updateItemMeta();
 
         return this;
     }
 
+    /**
+     * Adds an enchant glint to the item.
+     * @param hideFlag whether to add the item flag that hides enchants
+     */
     public AItemStackBuilder addEnchantGlint(boolean hideFlag) {
+
+        if(itemStack.getType() == Material.AIR) return this;
 
         itemStack.addUnsafeEnchantment(Enchantment.LUCK, 0);
 
@@ -71,6 +89,10 @@ public class AItemStackBuilder {
         updateItemMeta();
 
         return this;
+    }
+
+    public ItemStack getItemStack() {
+        return itemStack;
     }
 
     private void buildItemMeta() {

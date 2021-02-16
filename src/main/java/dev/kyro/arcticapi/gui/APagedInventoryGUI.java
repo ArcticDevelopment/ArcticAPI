@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public abstract class APagedInventoryGUI extends AInventoryGUI {
 
     public int forwardSlot = 0;
