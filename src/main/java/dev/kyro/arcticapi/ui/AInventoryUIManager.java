@@ -1,5 +1,6 @@
 package dev.kyro.arcticapi.ui;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -15,6 +16,7 @@ public class AInventoryUIManager implements Listener {
         InventoryHolder holder = event.getInventory().getHolder();
         if(!(holder instanceof AInventoryUI)) return;
         event.setCancelled(((AInventoryUI) holder).onClick(event));
+        ((Player) event.getWhoClicked()).updateInventory();
     }
 
     @EventHandler
@@ -23,6 +25,7 @@ public class AInventoryUIManager implements Listener {
         InventoryHolder holder = event.getInventory().getHolder();
         if(!(holder instanceof AInventoryUI)) return;
         ((AInventoryUI) holder).onOpen(event);
+        ((Player) event.getPlayer()).updateInventory();
     }
 
     @EventHandler
@@ -31,5 +34,6 @@ public class AInventoryUIManager implements Listener {
         InventoryHolder holder = event.getInventory().getHolder();
         if(!(holder instanceof AInventoryUI)) return;
         ((AInventoryUI) holder).onClose(event);
+        ((Player) event.getPlayer()).updateInventory();
     }
 }
