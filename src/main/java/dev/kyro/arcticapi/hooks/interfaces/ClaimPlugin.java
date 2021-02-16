@@ -13,7 +13,7 @@ public interface ClaimPlugin {
 
     boolean inUnclaimed(Player player);
 
-    boolean inUnclaimed(Location player);
+    boolean inUnclaimed(Location location);
 
     boolean canBreakBlock(Player player, Block block);
 }
