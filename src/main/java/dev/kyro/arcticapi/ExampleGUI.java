@@ -1,19 +1,15 @@
 package dev.kyro.arcticapi;
 
-import dev.kyro.arcticapi.ui.AInventoryUI;
+import dev.kyro.arcticapi.gui.APagedInventoryGUI;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.inventory.Inventory;
 
-public class ExampleUI extends AInventoryUI {
+public class ExampleGUI extends APagedInventoryGUI {
 
-    public ExampleUI(Inventory inventory) {
-        super(inventory);
-    }
+    public ExampleGUI() {
 
-    public ExampleUI(String name, int rows) {
-        super(name, rows);
+        super("Test", 3);
     }
 
     @Override
