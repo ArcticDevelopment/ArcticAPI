@@ -11,11 +11,6 @@ public abstract class AInventoryUI implements InventoryHolder {
 
     public Inventory inventory;
 
-    public AInventoryUI(Inventory inventory) {
-
-        this.inventory = inventory;
-    }
-
     public AInventoryUI(String name, int rows) {
 
         inventory = Bukkit.createInventory(this, getSlots(rows), name);
