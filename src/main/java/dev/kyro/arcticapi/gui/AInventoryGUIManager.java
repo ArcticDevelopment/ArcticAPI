@@ -12,8 +12,9 @@ import org.bukkit.inventory.InventoryHolder;
 public class AInventoryGUIManager implements Listener {
 
 	@EventHandler
-//	TODO: Only listen to actual item clicks
 	private static void onClick(InventoryClickEvent event) {
+
+		if(event.getClickedInventory() == null || event.getCurrentItem() == null) return;
 
 		InventoryHolder holder = event.getInventory().getHolder();
 		if(!(holder instanceof AInventoryGUI)) return;
@@ -22,11 +23,10 @@ public class AInventoryGUIManager implements Listener {
 
 			APagedInventoryGUI pagedInventory = (APagedInventoryGUI) holder;
 
-//			TODO: Probably should swap to getRawSlot
-			if(event.getSlot() == pagedInventory.backwardSlot) {
+			if(event.getRawSlot() == pagedInventory.backwardSlot) {
 
 				pagedInventory.previousPage();
-			} else if (event.getSlot() == pagedInventory.backwardSlot) {
+			} else if (event.getRawSlot() == pagedInventory.backwardSlot) {
 
 				pagedInventory.nextPage();
 			}
