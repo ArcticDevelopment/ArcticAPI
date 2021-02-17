@@ -7,27 +7,27 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 
 public class ExampleGUI extends APagedInventoryGUI {
 
-    public ExampleGUI() {
+	public ExampleGUI() {
 
-        super("Test", 3);
-    }
+		super("Test", 3);
+	}
 
-    @Override
-    public boolean onClick(InventoryClickEvent event) {
+	@Override
+	public boolean onClick(InventoryClickEvent event) {
 
-        event.getWhoClicked().sendMessage("click");
-        return false;
-    }
+		event.getWhoClicked().sendMessage("click");
+		return false;
+	}
 
-    @Override
-    public void onOpen(InventoryOpenEvent event) {
+	@Override
+	public void onOpen(InventoryOpenEvent event) {
 
-        event.getPlayer().sendMessage("open");
-    }
+		event.getPlayer().sendMessage("open");
+	}
 
-    @Override
-    public void onClose(InventoryCloseEvent event) {
+	@Override
+	public void onClose(InventoryCloseEvent event) {
 
-        event.getPlayer().sendMessage("close");
-    }
+		event.getPlayer().sendMessage("close");
+	}
 }

@@ -12,61 +12,61 @@ import java.util.Map;
 @SuppressWarnings("unused")
 public enum AHook {
 
-    SABER_FACTIONS("Factions");
+	SABER_FACTIONS("Factions");
 
-    private String name;
-    private static Map<AHook, Boolean> supportedPlugins = new HashMap<>();
+	private String name;
+	private static Map<AHook, Boolean> supportedPlugins = new HashMap<>();
 
-    AHook(String name) {
+	AHook(String name) {
 
-        this.name = name;
-    }
+		this.name = name;
+	}
 
-    public boolean isPluginLoaded() {
+	public boolean isPluginLoaded() {
 
-        return supportedPlugins.get(this);
-    }
+		return supportedPlugins.get(this);
+	}
 
-    public Plugin getPlugin() {
+	public Plugin getPlugin() {
 
-        return Bukkit.getServer().getPluginManager().getPlugin(name);
-    }
+		return Bukkit.getServer().getPluginManager().getPlugin(name);
+	}
 
-    public static void getSupportedPlugins() {
+	public static void getSupportedPlugins() {
 
-        supportedPlugins.clear();
+		supportedPlugins.clear();
 
-        for (AHook supportedPlugin : values()) {
+		for (AHook supportedPlugin : values()) {
 
-            Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(supportedPlugin.name);
+			Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(supportedPlugin.name);
 
-            if (plugin != null && plugin.isEnabled()) {
+			if (plugin != null && plugin.isEnabled()) {
 
-                PluginDescriptionFile description = plugin.getDescription();
+				PluginDescriptionFile description = plugin.getDescription();
 
-                List<String> authors = description.getAuthors();
-                String version = description.getVersion();
-                String website = description.getWebsite() != null ? description.getWebsite() : "";
+				List<String> authors = description.getAuthors();
+				String version = description.getVersion();
+				String website = description.getWebsite() != null ? description.getWebsite() : "";
 
-                switch (supportedPlugin) {
+				switch (supportedPlugin) {
 
-                    case SABER_FACTIONS:
-                        supportedPlugins.put(supportedPlugin, authors.contains("Driftay"));
-                        break;
+					case SABER_FACTIONS:
+						supportedPlugins.put(supportedPlugin, authors.contains("Driftay"));
+						break;
 
-                }
-            } else {
-                supportedPlugins.put(supportedPlugin, false);
-            }
-        }
-        loadFactionsHook();
-    }
+				}
+			} else {
+				supportedPlugins.put(supportedPlugin, false);
+			}
+		}
+		loadFactionsHook();
+	}
 
-    public static void getHooks() {
+	public static void getHooks() {
 
-        if (supportedPlugins.isEmpty()) getSupportedPlugins();
+		if (supportedPlugins.isEmpty()) getSupportedPlugins();
 
-        AOutput.log("Plugin Hooks");
+	    AOutput.log("Plugin Hooks");
 
         for (AHook plugin : supportedPlugins.keySet()) {
             if (plugin.isPluginLoaded()) {

@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 @SuppressWarnings("unused")
 public interface FactionsPlugin extends ClaimPlugin {
 
-    FactionRank getFactionRank(Player player);
+	FactionRank getFactionRank(Player player);
 
-    FactionRelation getRelation(Player player, Player otherPlayer);
+	FactionRelation getRelation(Player player, Player otherPlayer);
 }

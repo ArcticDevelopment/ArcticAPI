@@ -12,63 +12,63 @@ import org.bukkit.entity.Player;
 @SuppressWarnings("unused")
 public class SaberFactionsHook implements FactionsPlugin {
 
-    @Override
-    public boolean isFriendly(Player player, Player otherPlayer) {
+	@Override
+	public boolean isFriendly(Player player, Player otherPlayer) {
 
-        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
-        FPlayer fOtherPlayer = FPlayers.getInstance().getByPlayer(player);
+		FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
+		FPlayer fOtherPlayer = FPlayers.getInstance().getByPlayer(player);
 
-        if(fOtherPlayer.getFaction().isPeaceful()) return true;
+		if(fOtherPlayer.getFaction().isPeaceful()) return true;
 
-        return !inUnclaimed(player) && !inUnclaimed(otherPlayer) &&
-                (fPlayer.getFaction() == fOtherPlayer.getFaction()
-                        || fPlayer.getRelationTo(fOtherPlayer).isAlly()
-                        || fPlayer.getRelationTo(fOtherPlayer).isTruce());
-    }
+		return !inUnclaimed(player) && !inUnclaimed(otherPlayer) &&
+				(fPlayer.getFaction() == fOtherPlayer.getFaction()
+						|| fPlayer.getRelationTo(fOtherPlayer).isAlly()
+						|| fPlayer.getRelationTo(fOtherPlayer).isTruce());
+	}
 
-    @Override
-    public boolean inOwnTerritory(Player player) {
+	@Override
+	public boolean inOwnTerritory(Player player) {
 
-        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
+		FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
 
-        return !inUnclaimed(player) && fPlayer.isInOwnTerritory();
-    }
+		return !inUnclaimed(player) && fPlayer.isInOwnTerritory();
+	}
 
-    @Override
-    public boolean inUnclaimed(Player player) {
+	@Override
+	public boolean inUnclaimed(Player player) {
 
-        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
+		FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
 
-        return fPlayer.getFaction().isWilderness();
-    }
+		return fPlayer.getFaction().isWilderness();
+	}
 
-    @Override
-    public boolean inUnclaimed(Location location) {
+	@Override
+	public boolean inUnclaimed(Location location) {
 
-        FLocation fLocation = new FLocation(location);
+		FLocation fLocation = new FLocation(location);
 
-        return Board.getInstance().getFactionAt(fLocation).isWilderness();
-    }
+		return Board.getInstance().getFactionAt(fLocation).isWilderness();
+	}
 
-    @Override
-    public boolean canBreakBlock(Player player, Block block) {
-        return false;
-    }
+	@Override
+	public boolean canBreakBlock(Player player, Block block) {
+		return false;
+	}
 
-    @Override
-    public FactionRank getFactionRank(Player player) {
+	@Override
+	public FactionRank getFactionRank(Player player) {
 
-        FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
+		FPlayer fPlayer = FPlayers.getInstance().getByPlayer(player);
 
-        switch(fPlayer.getRole()) {
-            case LEADER:
-                return FactionRank.LEADER;
-            case COLEADER:
-                return FactionRank.COLEADER;
-            case MODERATOR:
-                return FactionRank.MODERATOR;
-            case NORMAL:
-                return FactionRank.MEMBER;
+		switch(fPlayer.getRole()) {
+			case LEADER:
+				return FactionRank.LEADER;
+			case COLEADER:
+				return FactionRank.COLEADER;
+			case MODERATOR:
+				return FactionRank.MODERATOR;
+			case NORMAL:
+	            return FactionRank.MEMBER;
             case RECRUIT:
                 return FactionRank.RECRUIT;
         }

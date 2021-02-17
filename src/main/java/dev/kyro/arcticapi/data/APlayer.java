@@ -9,15 +9,15 @@ import java.util.UUID;
 @SuppressWarnings("unused")
 public class APlayer {
 
-    public UUID pUUID;
-    public File playerFile;
-    public FileConfiguration playerdata;
+	public UUID pUUID;
+	public File playerFile;
+	public FileConfiguration playerdata;
 
-    public APlayer(UUID pUUID, File playerFile) {
+	public APlayer(UUID pUUID, File playerFile) {
 
-        this.pUUID = pUUID;
-        this.playerFile = playerFile;
+		this.pUUID = pUUID;
+		this.playerFile = playerFile;
 
-        playerdata = YamlConfiguration.loadConfiguration(playerFile);
-    }
+		playerdata = YamlConfiguration.loadConfiguration(playerFile);
+	}
 }

@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 
 public class TestCommand implements CommandExecutor {
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if(!(sender instanceof Player)) return false;
-        Player player = (Player) sender;
+		if(!(sender instanceof Player)) return false;
+		Player player = (Player) sender;
 
-        player.openInventory(new ExampleGUI().getInventory());
+		player.openInventory(new ExampleGUI().getInventory());
 
-        return false;
-    }
+		return false;
+	}
 }

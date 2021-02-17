@@ -12,84 +12,84 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class AItemStackBuilder {
 
-    private final ItemStack itemStack;
-    private ItemMeta itemMeta;
+	private final ItemStack itemStack;
+	private ItemMeta itemMeta;
 
-    /**
-     * Builds an item from the ground.
-     */
-    public AItemStackBuilder(Material material) {
+	/**
+	 * Builds an item from the ground.
+	 */
+	public AItemStackBuilder(Material material) {
 
-        this(material, 0);
-    }
+		this(material, 0);
+	}
 
-    /**
-     * Builds an item from the ground.
-     */
-    public AItemStackBuilder(Material material, int amount) {
+	/**
+	 * Builds an item from the ground.
+	 */
+	public AItemStackBuilder(Material material, int amount) {
 
-        this(material, amount, 0);
-    }
+		this(material, amount, 0);
+	}
 
-    /**
-     * Builds an item from the ground.
-     */
-    public AItemStackBuilder(Material material, int amount, int data) {
+	/**
+	 * Builds an item from the ground.
+	 */
+	public AItemStackBuilder(Material material, int amount, int data) {
 
-        itemStack = new ItemStack(material, amount, (short) data);
-        buildItemMeta();
-    }
+		itemStack = new ItemStack(material, amount, (short) data);
+		buildItemMeta();
+	}
 
-    /**
-     * Build around a pre-existing item.
-     */
-    public AItemStackBuilder(ItemStack itemStack) {
+	/**
+	 * Build around a pre-existing item.
+	 */
+	public AItemStackBuilder(ItemStack itemStack) {
 
-        this.itemStack = itemStack;
-        buildItemMeta();
-    }
+		this.itemStack = itemStack;
+		buildItemMeta();
+	}
 
-    public AItemStackBuilder setName(String name) {
+	public AItemStackBuilder setName(String name) {
 
-        itemMeta.setDisplayName(name);
-        updateItemMeta();
+		itemMeta.setDisplayName(name);
+		updateItemMeta();
 
-        return this;
-    }
+		return this;
+	}
 
-    public AItemStackBuilder setLore(List<String> lore) {
+	public AItemStackBuilder setLore(List<String> lore) {
 
-        itemMeta.setLore(lore);
-        updateItemMeta();
+		itemMeta.setLore(lore);
+		updateItemMeta();
 
-        return this;
-    }
+		return this;
+	}
 
-    public AItemStackBuilder setLore(ALoreBuilder loreBuilder) {
+	public AItemStackBuilder setLore(ALoreBuilder loreBuilder) {
 
-        itemMeta.setLore(loreBuilder.getLore());
-        updateItemMeta();
+		itemMeta.setLore(loreBuilder.getLore());
+		updateItemMeta();
 
-        return this;
-    }
+		return this;
+	}
 
-    /**
-     * Adds an enchant glint to the item.
-     * @param hideFlag whether to add the item flag that hides enchants
-     */
-    public AItemStackBuilder addEnchantGlint(boolean hideFlag) {
+	/**
+	 * Adds an enchant glint to the item.
+	 * @param hideFlag whether to add the item flag that hides enchants
+	 */
+	public AItemStackBuilder addEnchantGlint(boolean hideFlag) {
 
-        if(itemStack.getType() == Material.AIR) return this;
+		if(itemStack.getType() == Material.AIR) return this;
 
-        itemStack.addUnsafeEnchantment(Enchantment.LUCK, 0);
+		itemStack.addUnsafeEnchantment(Enchantment.LUCK, 0);
 
-        if(!hideFlag) return this;
+		if(!hideFlag) return this;
 
-        itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-        updateItemMeta();
+		itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		updateItemMeta();
 
-        return this;
-    }
+		return this;
+	}
 
     public ItemStack getItemStack() {
         return itemStack;

@@ -7,13 +7,13 @@ import org.bukkit.entity.Player;
 @SuppressWarnings("unused")
 public interface ClaimPlugin {
 
-    boolean isFriendly(Player player, Player otherPlayer);
+	boolean isFriendly(Player player, Player otherPlayer);
 
-    boolean inOwnTerritory(Player player);
+	boolean inOwnTerritory(Player player);
 
-    boolean inUnclaimed(Player player);
+	boolean inUnclaimed(Player player);
 
-    boolean inUnclaimed(Location location);
+	boolean inUnclaimed(Location location);
 
-    boolean canBreakBlock(Player player, Block block);
+	boolean canBreakBlock(Player player, Block block);
 }

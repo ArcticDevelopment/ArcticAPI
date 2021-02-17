@@ -12,38 +12,38 @@ import java.util.logging.Logger;
 @SuppressWarnings("unused")
 public class ArcticAPI {
 
-    private static Logger LOGGER = Logger.getLogger("Minecraft");
+	private static Logger LOGGER = Logger.getLogger("Minecraft");
 
-    public static JavaPlugin PLUGIN;
+	public static JavaPlugin PLUGIN;
 
-    public static String prefix = "";
-    public static String errorPrefix = "";
+	public static String prefix = "";
+	public static String errorPrefix = "";
 
-    public static void init(JavaPlugin plugin, String prefix, String errorPrefix) {
+	public static void init(JavaPlugin plugin, String prefix, String errorPrefix) {
 
-        ArcticAPI.PLUGIN = plugin;
+		ArcticAPI.PLUGIN = plugin;
 
-        ArcticAPI.prefix = prefix;
-        ArcticAPI.errorPrefix = errorPrefix;
+		ArcticAPI.prefix = prefix;
+		ArcticAPI.errorPrefix = errorPrefix;
 
-        setup();
-    }
+		setup();
+	}
 
-    public static void configInit(JavaPlugin plugin, String prefix, String errorPrefix) {
+	public static void configInit(JavaPlugin plugin, String prefix, String errorPrefix) {
 
-        ArcticAPI.PLUGIN = plugin;
+		ArcticAPI.PLUGIN = plugin;
 
-        ArcticAPI.prefix = AConfig.getString(prefix);
-        ArcticAPI.errorPrefix = AConfig.getString(errorPrefix);
+		ArcticAPI.prefix = AConfig.getString(prefix);
+		ArcticAPI.errorPrefix = AConfig.getString(errorPrefix);
 
-        setup();
-    }
+		setup();
+	}
 
-    public static void setup() {
+	public static void setup() {
 
-        APlayerData.init();
-        AHook.getHooks();
+		APlayerData.init();
+		AHook.getHooks();
 
-        Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), PLUGIN);
-    }
+		Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), PLUGIN);
+	}
 }

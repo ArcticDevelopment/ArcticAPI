@@ -13,87 +13,87 @@ import java.util.ArrayList;
 @SuppressWarnings("unused")
 public class AInventoryBuilder {
 
-    private final Inventory inventory;
+	private final Inventory inventory;
 
-    /**
-     * Builds an inventory from the ground.
-     */
-    public AInventoryBuilder(InventoryHolder owner, int size, String name) {
+	/**
+	 * Builds an inventory from the ground.
+	 */
+	public AInventoryBuilder(InventoryHolder owner, int size, String name) {
 
-        inventory = Bukkit.createInventory(owner, size, name);
-    }
+		inventory = Bukkit.createInventory(owner, size, name);
+	}
 
-    /**
-     * Build around a pre-existing inventory.
-     */
-    public AInventoryBuilder(Inventory inventory) {
+	/**
+	 * Build around a pre-existing inventory.
+	 */
+	public AInventoryBuilder(Inventory inventory) {
 
-        this.inventory = inventory;
-    }
+		this.inventory = inventory;
+	}
 
-    /**
-     * Creates a border going around the outside of the GUI.
-     */
-    public AInventoryBuilder createBorder(Material material, int toData) {
+	/**
+	 * Creates a border going around the outside of the GUI.
+	 */
+	public AInventoryBuilder createBorder(Material material, int toData) {
 
-        byte data = (byte) toData;
+		byte data = (byte) toData;
 
-        for(int i = 0; i < inventory.getSize(); i++) {
+		for(int i = 0; i < inventory.getSize(); i++) {
 
-            if(i < 9 || i > inventory.getSize() - 10 || i % 9 == 8 || i % 9 == 0) {
+			if(i < 9 || i > inventory.getSize() - 10 || i % 9 == 8 || i % 9 == 0) {
 
-                inventory.setItem(i, new ItemStack(material, 1, data));
-            }
-        }
+				inventory.setItem(i, new ItemStack(material, 1, data));
+			}
+		}
 
-        return this;
-    }
+		return this;
+	}
 
-    /**
-     * Sets any amount of slots in the inventory.
-     */
-    public AInventoryBuilder setSlots(Material material, int toData, int... slots) {
+	/**
+	 * Sets any amount of slots in the inventory.
+	 */
+	public AInventoryBuilder setSlots(Material material, int toData, int... slots) {
 
-        for(int slot : slots) {
+		for(int slot : slots) {
 
-            setSlot(material, toData, slot, null, null);
-        }
+			setSlot(material, toData, slot, null, null);
+		}
 
-        return this;
-    }
+		return this;
+	}
 
-    /**
-     * Sets a single slot in the inventory.
-     *
-     * @param name the name of the item; accepts null for no name
-     * @param lore the lore of the item; accepts null for no lore
-     */
-    public AInventoryBuilder setSlot(Material material, int toData, int slot, String name, ArrayList<String> lore) {
+	/**
+	 * Sets a single slot in the inventory.
+	 *
+	 * @param name the name of the item; accepts null for no name
+	 * @param lore the lore of the item; accepts null for no lore
+	 */
+	public AInventoryBuilder setSlot(Material material, int toData, int slot, String name, ArrayList<String> lore) {
 
-        byte data = (byte) toData;
+		byte data = (byte) toData;
 
-        ItemStack item = new ItemStack(material, 1, data);
-        ItemMeta meta = item.getItemMeta();
-        if(name != null) meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
-        if(lore != null) meta.setLore(lore);
-        item.setItemMeta(meta);
+		ItemStack item = new ItemStack(material, 1, data);
+		ItemMeta meta = item.getItemMeta();
+		if(name != null) meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+		if(lore != null) meta.setLore(lore);
+		item.setItemMeta(meta);
 
-        inventory.setItem(slot, item);
+		inventory.setItem(slot, item);
 
-        return this;
-    }
+		return this;
+	}
 
-    /**
-     * Adds an enchant glint to the items in given inventory slots.
-     * @param hideFlag whether to add the item flag that hides enchants
-     */
-    public AInventoryBuilder addEnchantGlint(boolean hideFlag, int... slots) {
+	/**
+	 * Adds an enchant glint to the items in given inventory slots.
+	 * @param hideFlag whether to add the item flag that hides enchants
+	 */
+	public AInventoryBuilder addEnchantGlint(boolean hideFlag, int... slots) {
 
-        for(int slot : slots) {
+		for(int slot : slots) {
 
-            ItemStack item = inventory.getItem(slot);
-            AItemStackBuilder itemStackBuilder = new AItemStackBuilder(item).addEnchantGlint(hideFlag);
-        }
+			ItemStack item = inventory.getItem(slot);
+			AItemStackBuilder itemStackBuilder = new AItemStackBuilder(item).addEnchantGlint(hideFlag);
+	    }
 
         return this;
     }

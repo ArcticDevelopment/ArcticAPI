@@ -11,48 +11,48 @@ import org.bukkit.inventory.InventoryHolder;
 @SuppressWarnings("unused")
 public class AInventoryGUIManager implements Listener {
 
-    @EventHandler
-//    TODO: Only listen to actual item clicks
-    private static void onClick(InventoryClickEvent event) {
+	@EventHandler
+//	TODO: Only listen to actual item clicks
+	private static void onClick(InventoryClickEvent event) {
 
-        InventoryHolder holder = event.getInventory().getHolder();
-        if(!(holder instanceof AInventoryGUI)) return;
+		InventoryHolder holder = event.getInventory().getHolder();
+		if(!(holder instanceof AInventoryGUI)) return;
 
-        if(holder instanceof APagedInventoryGUI) {
+		if(holder instanceof APagedInventoryGUI) {
 
-            APagedInventoryGUI pagedInventory = (APagedInventoryGUI) holder;
+			APagedInventoryGUI pagedInventory = (APagedInventoryGUI) holder;
 
-//            TODO: Probably should swap to getRawSlot
-            if(event.getSlot() == pagedInventory.backwardSlot) {
+//			TODO: Probably should swap to getRawSlot
+			if(event.getSlot() == pagedInventory.backwardSlot) {
 
-                pagedInventory.previousPage();
-            } else if (event.getSlot() == pagedInventory.backwardSlot) {
+				pagedInventory.previousPage();
+			} else if (event.getSlot() == pagedInventory.backwardSlot) {
 
-                pagedInventory.nextPage();
-            }
+				pagedInventory.nextPage();
+			}
 
-            return;
-        }
+			return;
+		}
 
-        event.setCancelled(((AInventoryGUI) holder).onClick(event));
-        ((Player) event.getWhoClicked()).updateInventory();
-    }
+		event.setCancelled(((AInventoryGUI) holder).onClick(event));
+		((Player) event.getWhoClicked()).updateInventory();
+	}
 
-    @EventHandler
-    private static void onOpen(InventoryOpenEvent event) {
+	@EventHandler
+	private static void onOpen(InventoryOpenEvent event) {
 
-        InventoryHolder holder = event.getInventory().getHolder();
-        if(!(holder instanceof AInventoryGUI)) return;
-        ((AInventoryGUI) holder).onOpen(event);
-        ((Player) event.getPlayer()).updateInventory();
-    }
+		InventoryHolder holder = event.getInventory().getHolder();
+		if(!(holder instanceof AInventoryGUI)) return;
+		((AInventoryGUI) holder).onOpen(event);
+		((Player) event.getPlayer()).updateInventory();
+	}
 
-    @EventHandler
-    private static void onClose(InventoryCloseEvent event) {
+	@EventHandler
+	private static void onClose(InventoryCloseEvent event) {
 
-        InventoryHolder holder = event.getInventory().getHolder();
-        if(!(holder instanceof AInventoryGUI)) return;
-        ((AInventoryGUI) holder).onClose(event);
-        ((Player) event.getPlayer()).updateInventory();
-    }
+		InventoryHolder holder = event.getInventory().getHolder();
+		if(!(holder instanceof AInventoryGUI)) return;
+		((AInventoryGUI) holder).onClose(event);
+		((Player) event.getPlayer()).updateInventory();
+	}
 }
