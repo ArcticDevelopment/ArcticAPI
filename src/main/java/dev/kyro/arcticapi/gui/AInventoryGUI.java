@@ -27,9 +27,8 @@ public abstract class AInventoryGUI implements InventoryHolder {
 	 * This method is not ran if the gui is a paged
 	 * gui and the clicked item is a page selector.
 	 *
-	 * @return  Returning true cancels the event
 	 */
-	public abstract boolean onClick(InventoryClickEvent event);
+	public abstract void onClick(InventoryClickEvent event);
 
 	/**
 	 * Called when the GUI is opened.
@@ -50,7 +49,17 @@ public abstract class AInventoryGUI implements InventoryHolder {
 	@Override
 	public Inventory getInventory() {
 
-		Inventory inventory = Bukkit.createInventory(this, baseGUI.getSize(), baseGUI.getName());
+		return getInventoryWithName(baseGUI.getName());
+	}
+
+	private static int getSlots(int rows) {
+
+		return Math.max(Math.min(rows, 6), 1) * 9;
+	}
+
+	public Inventory getInventoryWithName(String name) {
+
+		Inventory inventory = Bukkit.createInventory(this, baseGUI.getSize(), name);
 
 		for(int i = 0; i < baseGUI.getSize(); i++) {
 
@@ -59,11 +68,6 @@ public abstract class AInventoryGUI implements InventoryHolder {
 			inventory.setItem(i, toClone);
 		}
 
-		return baseGUI;
-	}
-
-	private static int getSlots(int rows) {
-
-		return Math.max(Math.min(rows, 6), 1) * 9;
+		return inventory;
 	}
 }

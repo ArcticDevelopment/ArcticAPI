@@ -13,7 +13,7 @@ public class TestCommand implements CommandExecutor {
 		if(!(sender instanceof Player)) return false;
 		Player player = (Player) sender;
 
-		player.openInventory(new ExampleGUI().getInventory());
+		player.openInventory(new ExampleGUI().getFirstPage());
 
 		return false;
 	}

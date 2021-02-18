@@ -14,27 +14,31 @@ public class AInventoryGUIManager implements Listener {
 	@EventHandler
 	private static void onClick(InventoryClickEvent event) {
 
-		if(event.getClickedInventory() == null || event.getCurrentItem() == null) return;
-
 		InventoryHolder holder = event.getInventory().getHolder();
 		if(!(holder instanceof AInventoryGUI)) return;
+		event.setCancelled(true);
+
+		Player player = (Player) event.getWhoClicked();
+
+		if(event.getClickedInventory() == null || event.getCurrentItem() == null) return;
 
 		if(holder instanceof APagedInventoryGUI) {
 
 			APagedInventoryGUI pagedInventory = (APagedInventoryGUI) holder;
 
-			if(event.getRawSlot() == pagedInventory.backwardSlot) {
+			if(event.getRawSlot() == pagedInventory.previousSlot) {
 
-				pagedInventory.previousPage();
-			} else if (event.getRawSlot() == pagedInventory.backwardSlot) {
+				pagedInventory.previousPage(event);
+				return;
+			} else if (event.getRawSlot() == pagedInventory.nextSlot) {
 
-				pagedInventory.nextPage();
+				pagedInventory.nextPage(event);
+				return;
 			}
-
-			return;
 		}
 
-		event.setCancelled(((AInventoryGUI) holder).onClick(event));
+//		event.setCancelled(((AInventoryGUI) holder).onClick(event));
+		((AInventoryGUI) holder).onClick(event);
 		((Player) event.getWhoClicked()).updateInventory();
 	}
 

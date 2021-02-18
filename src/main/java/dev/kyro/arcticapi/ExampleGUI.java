@@ -9,25 +9,24 @@ public class ExampleGUI extends APagedInventoryGUI {
 
 	public ExampleGUI() {
 
-		super("Test", 3);
+		super("0", 1);
 	}
 
 	@Override
-	public boolean onClick(InventoryClickEvent event) {
+	public void onClick(InventoryClickEvent event) {
 
-		event.getWhoClicked().sendMessage("click");
-		return false;
+//		event.getWhoClicked().sendMessage("click");
 	}
 
 	@Override
 	public void onOpen(InventoryOpenEvent event) {
 
-		event.getPlayer().sendMessage("open");
+//		event.getPlayer().sendMessage("open");
 	}
 
 	@Override
 	public void onClose(InventoryCloseEvent event) {
 
-		event.getPlayer().sendMessage("close");
+//		event.getPlayer().sendMessage("close");
 	}
 }
