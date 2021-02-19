@@ -7,29 +7,29 @@ import java.util.List;
 
 public abstract class ASubCommand {
 
-	private String name;
+	private String executor;
 	private String description;
 	private List<String> aliases = new ArrayList<>();
 
-	public ASubCommand(String name) {
+	public ASubCommand(String executor) {
 
-		this(name, null);
+		this(executor, null);
 	}
 
-	public ASubCommand(String name, String description) {
+	public ASubCommand(String executor, String description) {
 
-		this.name = name;
+		this.executor = executor;
 		this.description = description;
 	}
 
 	public abstract void execute(CommandSender sender, List<String> args);
 
-	public String getName() {
-		return name;
+	public String getExecutor() {
+		return executor;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setExecutor(String executor) {
+		this.executor = executor;
 	}
 
 	public String getDescription() {

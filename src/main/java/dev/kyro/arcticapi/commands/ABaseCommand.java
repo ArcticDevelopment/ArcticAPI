@@ -1,6 +1,7 @@
 package dev.kyro.arcticapi.commands;
 
 import dev.kyro.arcticapi.ArcticAPI;
+import dev.kyro.arcticapi.builders.AMessageBuilder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,9 +14,12 @@ public abstract class ABaseCommand implements CommandExecutor {
 
 	private final List<ASubCommand> subCommands = new ArrayList<>();
 
-	public ABaseCommand(String baseCommand) {
+	private String baseExecutor;
 
-		ArcticAPI.PLUGIN.getCommand(baseCommand).setExecutor(this);
+	public ABaseCommand(String baseExecutor) {
+
+		this.baseExecutor = baseExecutor;
+		ArcticAPI.PLUGIN.getCommand(baseExecutor).setExecutor(this);
 	}
 
 	public abstract void executeBase(CommandSender sender, List<String> args);
@@ -35,6 +39,22 @@ public abstract class ABaseCommand implements CommandExecutor {
 		}
 	}
 
+	public AMessageBuilder createHelp() {
+
+		AMessageBuilder helpMessage = new AMessageBuilder();
+
+		helpMessage.border("&f&m--------------------&f< HELP >&m--------------------");
+
+		for(ASubCommand subCommand : subCommands) {
+
+			String command = "&f/" + baseExecutor + " " + subCommand.getExecutor()
+					+ (subCommand.getDescription() != null ? " - " + subCommand.getDescription() : "");
+			helpMessage.addLine(command);
+		}
+
+		return null;
+	}
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		List<String> argsList = new ArrayList<>(Arrays.asList(args));
@@ -47,7 +67,7 @@ public abstract class ABaseCommand implements CommandExecutor {
 
 		for(ASubCommand subCommand : subCommands) {
 
-			if(!subCommand.getName().equals(args[0]) && !subCommand.getAliases().contains(args[0])) continue;
+			if(!subCommand.getExecutor().equals(args[0]) && !subCommand.getAliases().contains(args[0])) continue;
 
 			argsList.remove(0);
 
