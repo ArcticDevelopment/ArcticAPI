@@ -39,11 +39,9 @@ public abstract class ABaseCommand implements CommandExecutor {
 		}
 	}
 
-	public AMessageBuilder createHelp() {
+	protected AMessageBuilder createHelp() {
 
 		AMessageBuilder helpMessage = new AMessageBuilder();
-
-		helpMessage.border("&f&m--------------------&f< HELP >&m--------------------");
 
 		for(ASubCommand subCommand : subCommands) {
 
@@ -52,7 +50,9 @@ public abstract class ABaseCommand implements CommandExecutor {
 			helpMessage.addLine(command);
 		}
 
-		return null;
+		helpMessage.border("&f&m--------------------&f< HELP >&m--------------------");
+
+		return helpMessage;
 	}
 
 	@Override
