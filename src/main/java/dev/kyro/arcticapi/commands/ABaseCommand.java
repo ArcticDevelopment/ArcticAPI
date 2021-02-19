@@ -50,7 +50,7 @@ public abstract class ABaseCommand implements CommandExecutor {
 			helpMessage.addLine(command);
 		}
 
-		helpMessage.border("&f&m--------------------&f< HELP >&m--------------------");
+		helpMessage.border("&f&m---------------&f< HELP >&m---------------").colorize();
 
 		return helpMessage;
 	}
