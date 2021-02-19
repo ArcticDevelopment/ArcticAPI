@@ -7,6 +7,8 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 
+		loadConfig();
+
 		ArcticAPI.init(this, "", "");
 
 		getCommand("api").setExecutor(new TestCommand());
@@ -15,5 +17,11 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onDisable() {
 
+	}
+
+	private void loadConfig() {
+
+		getConfig().options().copyDefaults(true);
+		saveConfig();
 	}
 }
