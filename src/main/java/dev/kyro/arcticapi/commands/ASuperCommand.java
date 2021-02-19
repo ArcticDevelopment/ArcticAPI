@@ -26,6 +26,14 @@ public class ASuperCommand implements CommandExecutor {
 		subCommands.add(subCommand);
 	}
 
+	public void registerCommands(ARootCommand... subCommands) {
+
+		for(ARootCommand subCommand : subCommands) {
+
+			registerCommand(subCommand);
+		}
+	}
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
