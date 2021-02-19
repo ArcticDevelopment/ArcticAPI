@@ -2,26 +2,27 @@ package dev.kyro.arcticapi.commands;
 
 import org.bukkit.command.CommandSender;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ARootCommand {
+public abstract class ASubCommand {
 
 	private String name;
 	private String description;
-	private List<String> aliases;
+	private List<String> aliases = new ArrayList<>();
 
-	public ARootCommand(String name) {
+	public ASubCommand(String name) {
 
 		this(name, null);
 	}
 
-	public ARootCommand(String name, String description) {
+	public ASubCommand(String name, String description) {
 
 		this.name = name;
 		this.description = description;
 	}
 
-	public abstract boolean execute(CommandSender sender, List<String> args);
+	public abstract void execute(CommandSender sender, List<String> args);
 
 	public String getName() {
 		return name;

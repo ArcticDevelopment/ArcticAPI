@@ -1,20 +1,25 @@
 package dev.kyro.arcticapi;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
+import dev.kyro.arcticapi.commands.ASubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class TestCommand implements CommandExecutor {
+import java.util.List;
+
+public class TestCommand extends ASubCommand {
+
+	public TestCommand(String name) {
+		super(name);
+	}
 
 	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+	public void execute(CommandSender sender, List<String> args) {
 
-		if(!(sender instanceof Player)) return false;
+		if(!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 
 		player.openInventory(new ExampleGUI().getFirstPage());
 
-		return false;
+		return;
 	}
 }
