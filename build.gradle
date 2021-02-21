@@ -23,6 +23,8 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
+    compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.0'
+
 //    Factions Plugins
     compileOnly 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'
 }

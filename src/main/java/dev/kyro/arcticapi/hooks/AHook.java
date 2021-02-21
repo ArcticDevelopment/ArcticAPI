@@ -1,90 +1,43 @@
 package dev.kyro.arcticapi.hooks;
 
-import dev.kyro.arcticapi.misc.AOutput;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import dev.kyro.arcticapi.hooks.enums.FactionRank;
+import dev.kyro.arcticapi.hooks.enums.FactionRelation;
+import dev.kyro.arcticapi.hooks.interfaces.FactionsPlugin;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 @SuppressWarnings("unused")
-public enum AHook {
+public class AHook {
 
-	SABER_FACTIONS("Factions");
+	public static FactionsPlugin factionsPlugin;
 
-	private String name;
-	private static Map<AHook, Boolean> supportedPlugins = new HashMap<>();
+	public static boolean isFriendly(Player player, Player otherPlayer) {
 
-	AHook(String name) {
-
-		this.name = name;
+		return factionsPlugin != null && factionsPlugin.isFriendly(player, otherPlayer);
 	}
 
-	public boolean isPluginLoaded() {
+	public static boolean inUnclaimed(Player player) {
 
-		return supportedPlugins.get(this);
+		return factionsPlugin != null && factionsPlugin.inUnclaimed(player);
 	}
 
-	public Plugin getPlugin() {
+	public static boolean inOwnTerritory(Player player) {
 
-		return Bukkit.getServer().getPluginManager().getPlugin(name);
+		return factionsPlugin != null && factionsPlugin.inOwnTerritory(player);
 	}
 
-	public static void getSupportedPlugins() {
+	public static boolean inUnclaimed(Location location) {
 
-		supportedPlugins.clear();
-
-		for (AHook supportedPlugin : values()) {
-
-			Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(supportedPlugin.name);
-
-			if (plugin != null && plugin.isEnabled()) {
-
-				PluginDescriptionFile description = plugin.getDescription();
-
-				List<String> authors = description.getAuthors();
-				String version = description.getVersion();
-				String website = description.getWebsite() != null ? description.getWebsite() : "";
-
-				switch (supportedPlugin) {
-
-					case SABER_FACTIONS:
-						supportedPlugins.put(supportedPlugin, authors.contains("Driftay"));
-						break;
-
-				}
-			} else {
-				supportedPlugins.put(supportedPlugin, false);
-			}
-		}
-		loadFactionsHook();
+		return factionsPlugin != null && factionsPlugin.inUnclaimed(location);
 	}
 
-	public static void getHooks() {
+	public static FactionRank getFactionRank(Player player) {
 
-		if (supportedPlugins.isEmpty()) getSupportedPlugins();
+		return factionsPlugin != null ? factionsPlugin.getFactionRank(player) : null;
+	}
 
-	    AOutput.log("Plugin Hooks");
+	public static FactionRelation getRelation(Player player, Player otherPlayer) {
 
-        for (AHook plugin : supportedPlugins.keySet()) {
-            if (plugin.isPluginLoaded()) {
-
-                AOutput.log("Hooked into: " + plugin.name());
-            }
-        }
-    }
-
-    private static void loadFactionsHook() {
-        for (AHook plugin : values()) {
-            if (plugin.isPluginLoaded()) {
-                switch (plugin) {
-                    case SABER_FACTIONS:
-                        AFactionsHook.factionsPlugin = new SaberFactionsHook();
-                        return;
-                }
-            }
-        }
-    }
+		return factionsPlugin != null ? factionsPlugin.getRelation(player, otherPlayer) : null;
+	}
 }

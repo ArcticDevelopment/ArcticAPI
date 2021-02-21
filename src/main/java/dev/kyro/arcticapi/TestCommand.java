@@ -1,5 +1,7 @@
 package dev.kyro.arcticapi;
 
+import com.gmail.filoghost.holographicdisplays.api.Hologram;
+import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import dev.kyro.arcticapi.commands.ASubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -18,8 +20,13 @@ public class TestCommand extends ASubCommand {
 		if(!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 
-		player.openInventory(new ExampleGUI().getFirstPage());
+		player.sendMessage("asdfasdf");
 
-		return;
+		Hologram hologram = HologramsAPI.createHologram(Main.INSTANCE, player.getLocation());
+		hologram.appendTextLine("lol");
+
+//		player.openInventory(new ExampleGUI().getFirstPage());
+//
+//		return;
 	}
 }
