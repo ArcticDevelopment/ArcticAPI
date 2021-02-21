@@ -2,7 +2,7 @@ package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.data.APlayerData;
-import dev.kyro.arcticapi.hooks.ASupportedPlugins;
+import dev.kyro.arcticapi.hooks.enums.SupportedPlugins;
 import dev.kyro.arcticapi.gui.AInventoryGUIManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,7 +42,7 @@ public class ArcticAPI {
 	public static void setup() {
 
 		APlayerData.init();
-		ASupportedPlugins.getHooks();
+		SupportedPlugins.getHooks();
 
 		Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), PLUGIN);
 	}

@@ -1,5 +1,7 @@
-package dev.kyro.arcticapi.hooks;
+package dev.kyro.arcticapi.hooks.enums;
 
+import dev.kyro.arcticapi.hooks.AHook;
+import dev.kyro.arcticapi.hooks.SaberFactionsHook;
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -10,14 +12,14 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("unused")
-public enum ASupportedPlugins {
+public enum SupportedPlugins {
 
 	SABER_FACTIONS("Factions");
 
 	private final String name;
-	private static final Map<ASupportedPlugins, Boolean> supportedPlugins = new HashMap<>();
+	private static final Map<SupportedPlugins, Boolean> supportedPlugins = new HashMap<>();
 
-	ASupportedPlugins(String name) {
+	SupportedPlugins(String name) {
 
 		this.name = name;
 	}
@@ -36,7 +38,7 @@ public enum ASupportedPlugins {
 
 		supportedPlugins.clear();
 
-		for (ASupportedPlugins supportedPlugin : values()) {
+		for (SupportedPlugins supportedPlugin : values()) {
 
 			Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(supportedPlugin.name);
 
@@ -68,7 +70,7 @@ public enum ASupportedPlugins {
 
 	    AOutput.log("Plugin Hooks");
 
-        for (ASupportedPlugins plugin : supportedPlugins.keySet()) {
+        for (SupportedPlugins plugin : supportedPlugins.keySet()) {
             if (plugin.isPluginLoaded()) {
 
                 AOutput.log("Hooked into: " + plugin.name());
@@ -77,7 +79,7 @@ public enum ASupportedPlugins {
     }
 
     private static void loadFactionsHook() {
-        for (ASupportedPlugins plugin : values()) {
+        for (SupportedPlugins plugin : values()) {
             if (plugin.isPluginLoaded()) {
                 switch (plugin) {
                     case SABER_FACTIONS:
