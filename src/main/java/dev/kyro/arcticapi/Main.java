@@ -20,7 +20,7 @@ public class Main extends JavaPlugin {
 		} else {
 
 			System.out.println("WorldGuard loaded");
-			WorldGuardHook.registerFlag("arctic-fishing", false);
+			WorldGuardHook.registerFlag("arctic-test", false);
 		}
 	}
 

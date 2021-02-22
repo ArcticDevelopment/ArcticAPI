@@ -20,7 +20,7 @@ public class TestCommand extends ASubCommand {
 		Player player = (Player) sender;
 
 //		player.sendMessage("asdf");
-		player.sendMessage(WorldGuardHook.hasFlag(player.getLocation(), "arctic-fishing") + "");
+		player.sendMessage(WorldGuardHook.hasFlag(player.getLocation(), "arctic-test") + "");
 
 //		Hologram hologram = HologramsAPI.createHologram(Main.INSTANCE, player.getLocation());
 //		hologram.appendTextLine("lol");
