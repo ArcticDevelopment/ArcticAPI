@@ -9,7 +9,6 @@ import java.util.List;
 
 public class TestBase extends ABaseCommand {
 
-
 	public TestBase(String baseCommand) {
 		super(baseCommand);
 	}

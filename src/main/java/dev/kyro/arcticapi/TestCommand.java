@@ -1,8 +1,7 @@
 package dev.kyro.arcticapi;
 
-import com.gmail.filoghost.holographicdisplays.api.Hologram;
-import com.gmail.filoghost.holographicdisplays.api.HologramsAPI;
 import dev.kyro.arcticapi.commands.ASubCommand;
+import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -20,10 +19,11 @@ public class TestCommand extends ASubCommand {
 		if(!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 
-		player.sendMessage("asdfasdf");
+//		player.sendMessage("asdf");
+		player.sendMessage(WorldGuardHook.hasFlag(player.getLocation(), "arctic-fishing") + "");
 
-		Hologram hologram = HologramsAPI.createHologram(Main.INSTANCE, player.getLocation());
-		hologram.appendTextLine("lol");
+//		Hologram hologram = HologramsAPI.createHologram(Main.INSTANCE, player.getLocation());
+//		hologram.appendTextLine("lol");
 
 //		player.openInventory(new ExampleGUI().getFirstPage());
 //

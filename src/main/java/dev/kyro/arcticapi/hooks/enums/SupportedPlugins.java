@@ -1,7 +1,7 @@
 package dev.kyro.arcticapi.hooks.enums;
 
 import dev.kyro.arcticapi.hooks.AHook;
-import dev.kyro.arcticapi.hooks.SaberFactionsHook;
+import dev.kyro.arcticapi.hooks.pluginhooks.SaberFactionsHook;
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

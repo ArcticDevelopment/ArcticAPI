@@ -3,6 +3,6 @@ author: KyroKrypt
 version: 1.0.0
 main: dev.kyro.arcticapi.Main
 description: API test
-softdepend: [ HolographicDisplays ]
+softdepend: [ HolographicDisplays, WorldGuard ]
 commands:
   api:

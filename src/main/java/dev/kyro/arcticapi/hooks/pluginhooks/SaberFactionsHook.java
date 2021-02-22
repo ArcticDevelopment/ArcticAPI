@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.hooks;
+package dev.kyro.arcticapi.hooks.pluginhooks;
 
 import com.massivecraft.factions.*;
 import com.massivecraft.factions.struct.Relation;

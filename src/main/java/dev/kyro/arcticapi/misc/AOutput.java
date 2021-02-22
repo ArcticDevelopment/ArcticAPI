@@ -35,6 +35,7 @@ public class AOutput {
 
 	public static void log(String message) {
 
-		System.out.println(ChatColor.translateAlternateColorCodes('&', message));
+		ArcticAPI.PLUGIN.getServer().getConsoleSender().sendMessage(
+				"[" + ArcticAPI.PLUGIN.getName() + "] " + ChatColor.translateAlternateColorCodes('&', message));
 	}
 }

@@ -11,6 +11,7 @@ repositories {
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "https://jitpack.io" }
+    maven { url "https://maven.enginehub.org/repo/" }
 
 //    Factions Dependency locations
     maven { url "https://repo.codemc.org/repository/maven-public" }
@@ -24,6 +25,7 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
     compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.0'
+    compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.2'
 
 //    Factions Plugins
     compileOnly 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'

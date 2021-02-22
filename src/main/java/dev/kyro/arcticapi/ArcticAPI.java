@@ -2,17 +2,14 @@ package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.data.APlayerData;
-import dev.kyro.arcticapi.hooks.enums.SupportedPlugins;
 import dev.kyro.arcticapi.gui.AInventoryGUIManager;
+import dev.kyro.arcticapi.hooks.enums.SupportedPlugins;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.logging.Logger;
 
 @SuppressWarnings("unused")
 public class ArcticAPI {
-
-	private static Logger LOGGER = Logger.getLogger("Minecraft");
 
 	public static JavaPlugin PLUGIN;
 
@@ -45,5 +42,11 @@ public class ArcticAPI {
 		SupportedPlugins.getHooks();
 
 		Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), PLUGIN);
+	}
+
+	public static void logAPI(String message) {
+
+		ArcticAPI.PLUGIN.getServer().getConsoleSender().sendMessage(
+				"[" + ArcticAPI.PLUGIN.getName() + ":ArcticAPI] " + ChatColor.translateAlternateColorCodes('&', message));
 	}
 }
