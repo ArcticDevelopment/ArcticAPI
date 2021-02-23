@@ -4,6 +4,7 @@ import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.gui.AInventoryGUIManager;
 import dev.kyro.arcticapi.hooks.enums.SupportedPlugins;
+import dev.kyro.arcticapi.misc.FloatingCrystal;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -39,6 +40,7 @@ public class ArcticAPI {
 	public static void setup() {
 
 		APlayerData.init();
+		FloatingCrystal.init();
 		SupportedPlugins.getHooks();
 
 		Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), PLUGIN);

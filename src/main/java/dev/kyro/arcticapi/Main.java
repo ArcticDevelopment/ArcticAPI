@@ -1,7 +1,6 @@
 package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.commands.ABaseCommand;
-import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,14 +13,14 @@ public class Main extends JavaPlugin {
 	public void onLoad() {
 
 		WORLDGUARD = getServer().getPluginManager().getPlugin("WorldGuard");
-		if(WORLDGUARD == null) {
-
-			System.out.println("WorldGuard not found");
-		} else {
-
-			System.out.println("WorldGuard loaded");
-			WorldGuardHook.registerFlag("arctic-test", false);
-		}
+//		if(WORLDGUARD == null) {
+//
+//			System.out.println("WorldGuard not found");
+//		} else {
+//
+//			System.out.println("WorldGuard loaded");
+//			WorldGuardHook.registerFlag("arctic-test", false);
+//		}
 	}
 
 	@Override
