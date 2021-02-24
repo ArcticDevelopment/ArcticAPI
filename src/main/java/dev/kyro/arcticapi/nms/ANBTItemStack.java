@@ -33,7 +33,7 @@ public class ANBTItemStack extends ItemStack {
 	public void setNBTTag(String key, NBTBase value) {
 
 		net.minecraft.server.v1_8_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(this);
-		NBTTagCompound comp = nmsItem.getTag();
+		NBTTagCompound comp = nmsItem.getTag() != null ? nmsItem.getTag() : new NBTTagCompound();
 
 		comp.set(key,value);
 
