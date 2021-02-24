@@ -44,7 +44,6 @@ public class WorldGuardHook {
 
 			for(Map.Entry<Flag<?>, Object> flagEntry : protectedRegion.getFlags().entrySet()) {
 
-				System.out.println(flagEntry.getKey().getName().equals(flagName) && flagEntry.getValue() == StateFlag.State.ALLOW);
 				if(flagEntry.getKey().getName().equals(flagName) && flagEntry.getValue() == StateFlag.State.ALLOW) return true;
 			}
 		}
