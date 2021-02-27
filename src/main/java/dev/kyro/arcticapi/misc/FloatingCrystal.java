@@ -8,6 +8,7 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -56,37 +57,45 @@ public class FloatingCrystal {
 					floatingCrystal.update();
 				}
 			}
-		}.runTaskTimerAsynchronously(ArcticAPI.PLUGIN, 0L, 3L);
+		}.runTaskTimerAsynchronously(ArcticAPI.PLUGIN, 0L, 1L);
 	}
 
 	public void update() {
 
+//		Location tempLocation = initialLocation.clone();
+//		tempLocation.setY(initialLocation.getY() - 10);
+//		armorStand.teleport(tempLocation, PlayerTeleportEvent.TeleportCause.COMMAND);
+
+//		if(armorStand.getLocation().getY() > initialLocation.getY()) return;
+//		armorStand.setVelocity(armorStand.getVelocity().setY(0.5));
+
+		armorStand.teleport(currentLocation, PlayerTeleportEvent.TeleportCause.COMMAND);
+
 		double multiplier = 1;
 		double yChange = multiplier * (Math.cos(Math.toRadians(degrees)) / 2 + multiplier / 2);
 		currentLocation.setY(initialLocation.getY() + yChange);
-		degrees += 3;
-
 		currentLocation.setYaw(currentLocation.getYaw() + 5);
-//		armorStand.teleport(currentLocation, PlayerTeleportEvent.TeleportCause.COMMAND);
+		degrees += 5;
 
-		Collection<Entity> nearbyEntities = initialLocation.getWorld().getNearbyEntities(initialLocation, 10, 10, 10);
+		Collection<Entity> nearbyEntities = armorStand.getNearbyEntities(10, 10, 10);
 		for(Entity nearbyEntity : nearbyEntities) {
 
-			if(!(nearbyEntities instanceof Player)) continue;
+			if(!(nearbyEntity instanceof Player)) continue;
 
 			Player player = (Player) nearbyEntity;
-			player.sendMessage("asdf");
 			CraftPlayer craftPlayer = (CraftPlayer) player;
+
+			player.sendMessage("Y: " + currentLocation.getY());
 
 			PacketPlayOutEntityTeleport update = new PacketPlayOutEntityTeleport(
 					armorStand.getEntityId(),
 					(int) (currentLocation.getX() * 32.0D),
 					(int) (currentLocation.getY() * 32.0D),
 					(int) (currentLocation.getZ() * 32.0D),
-					(byte) (currentLocation.getYaw()),
-					(byte) (currentLocation.getPitch()),
+					(byte)((int)(currentLocation.getYaw() * 256.0F / 360.0F)),
+					(byte)((int)(currentLocation.getPitch() * 256.0F / 360.0F)),
 					false
-					);
+			);
 			craftPlayer.getHandle().playerConnection.sendPacket(update);
 		}
 	}
