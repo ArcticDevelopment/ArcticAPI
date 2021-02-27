@@ -1,6 +1,4 @@
-package dev.kyro.arcticapi.discord;
-
-//Credit: k3kdude - https://gist.github.com/k3kdude/fba6f6b37594eae3d6f9475330733bdb
+package dev.kyro.arcticapi.libs.discord;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.awt.Color;

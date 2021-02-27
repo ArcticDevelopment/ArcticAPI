@@ -1,7 +1,7 @@
 package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.commands.ASubCommand;
-import dev.kyro.arcticapi.discord.DiscordWebhook;
+import dev.kyro.arcticapi.libs.discord.DiscordWebhook;
 import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
