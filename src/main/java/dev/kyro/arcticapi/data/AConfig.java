@@ -3,6 +3,7 @@ package dev.kyro.arcticapi.data;
 import dev.kyro.arcticapi.ArcticAPI;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class AConfig {
 
 	public static void addToList(String path, Object object) {
 
-		List<Object> list = getList(path);
+		List<Object> list = getList(path) != null ? getList(path) : new ArrayList<>();
 		list.add(object);
 
 		set(path, list);
