@@ -50,13 +50,13 @@ public class APlayerData {
 		} catch (IOException ignored) {}
 	}
 
-	public static APlayer createPlayerData(UUID pUUID) {
+	private static APlayer createPlayerData(UUID pUUID) {
 
-		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder(), "playerdata/" + pUUID + ".yml");
+		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/playerdata/", pUUID + ".yml");
 
 		if(!playerFile.exists()) {
 			try {
-				boolean ignored = playerFile.mkdirs();
+				boolean ignored = playerFile.getParentFile().mkdirs();
 				boolean ignored2 = playerFile.createNewFile();
 			} catch(IOException exception) {
 
