@@ -8,7 +8,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class AInventoryBuilder {
@@ -68,7 +68,7 @@ public class AInventoryBuilder {
 	 * @param name the name of the item; accepts null for no name
 	 * @param lore the lore of the item; accepts null for no lore
 	 */
-	public AInventoryBuilder setSlot(Material material, int toData, int slot, String name, ArrayList<String> lore) {
+	public AInventoryBuilder setSlot(Material material, int toData, int slot, String name, List<String> lore) {
 
 		byte data = (byte) toData;
 

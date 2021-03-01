@@ -101,6 +101,7 @@ public class APlayerData implements Listener {
 
 		aPlayer.playerdata.set("name", player.getName());
 		aPlayer.playerdata.set("displayname", player.getDisplayName());
+		System.out.println(player.getDisplayName());
 		try {
 			aPlayer.playerdata.save(aPlayer.playerFile);
 		} catch (IOException ignored) {}
