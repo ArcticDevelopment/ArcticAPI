@@ -1,6 +1,7 @@
 package dev.kyro.arcticapi.data;
 
 import dev.kyro.arcticapi.ArcticAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,6 +22,19 @@ public class APlayerData implements Listener {
 	private static HashMap<UUID, APlayer> playerData = new HashMap<>();
 
 	public static void init() {
+
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				for(Player player : Bukkit.getOnlinePlayers()) {
+
+					if(!playerData.containsKey(player.getUniqueId())) return;
+					APlayer aPlayer = playerData.get(player.getUniqueId());
+
+					APlayerData.updateDefaultFields(player, aPlayer);
+				}
+			}
+		}.runTaskTimer(ArcticAPI.PLUGIN, 20L, 20L);
 
 		File folder = new File(ArcticAPI.PLUGIN.getDataFolder(), "playerdata/");
 		if(!folder.exists()) return;
