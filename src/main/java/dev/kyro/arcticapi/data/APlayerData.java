@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +46,12 @@ public class APlayerData implements Listener {
 		if(!playerData.containsKey(player.getUniqueId())) return;
 		APlayer aPlayer = playerData.get(player.getUniqueId());
 
-		updateDefaultFields(player, aPlayer);
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				updateDefaultFields(player, aPlayer);
+			}
+		}.runTaskLater(ArcticAPI.PLUGIN, 10L);
 	}
 
 	public static FileConfiguration getPlayerData(Player player) {
