@@ -42,6 +42,7 @@ public class ArcticAPI {
 		SupportedPlugins.getHooks();
 
 		Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), PLUGIN);
+		Bukkit.getPluginManager().registerEvents(new APlayerData(), PLUGIN);
 	}
 
 	public static void logAPI(String message) {

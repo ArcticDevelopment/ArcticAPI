@@ -2,14 +2,19 @@ package dev.kyro.arcticapi.data;
 
 import dev.kyro.arcticapi.ArcticAPI;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @SuppressWarnings("unused")
-public class APlayerData {
+public class APlayerData implements Listener {
 
 	private static HashMap<UUID, APlayer> playerData = new HashMap<>();
 
@@ -32,27 +37,49 @@ public class APlayerData {
 		}
 	}
 
-	public static FileConfiguration getPlayerData(UUID pUUID) {
+	@EventHandler
+	public static void onJoin(PlayerJoinEvent event) {
 
-		if(!playerData.containsKey(pUUID)) return createPlayerData(pUUID).playerdata;
-		APlayer aPlayer = playerData.get(pUUID);
+		Player player = event.getPlayer();
+		if(!playerData.containsKey(player.getUniqueId())) return;
+		APlayer aPlayer = playerData.get(player.getUniqueId());
+
+		updateDefaultFields(player, aPlayer);
+	}
+
+	public static FileConfiguration getPlayerData(Player player) {
+
+		if(!playerData.containsKey(player.getUniqueId())) return createPlayerData(player).playerdata;
+		APlayer aPlayer = playerData.get(player.getUniqueId());
 
 		return aPlayer.playerdata;
 	}
 
-	public static void savePlayerData(UUID pUUID) {
+	public static Map<UUID, FileConfiguration> getAllData() {
 
-		if(!playerData.containsKey(pUUID)) return;
-		APlayer aPlayer = playerData.get(pUUID);
+		Map<UUID, FileConfiguration> playerMap = new HashMap<>();
+
+		for(Map.Entry<UUID, APlayer> entry : playerData.entrySet()) {
+
+			playerMap.put(entry.getKey(), entry.getValue().playerdata);
+		}
+
+		return playerMap;
+	}
+
+	public static void savePlayerData(Player player) {
+
+		if(!playerData.containsKey(player.getUniqueId())) return;
+		APlayer aPlayer = playerData.get(player.getUniqueId());
 
 		try {
 			aPlayer.playerdata.save(aPlayer.playerFile);
 		} catch (IOException ignored) {}
 	}
 
-	private static APlayer createPlayerData(UUID pUUID) {
+	private static APlayer createPlayerData(Player player) {
 
-		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/playerdata/", pUUID + ".yml");
+		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/playerdata/", player.getUniqueId() + ".yml");
 
 		if(!playerFile.exists()) {
 			try {
@@ -64,9 +91,18 @@ public class APlayerData {
             }
         }
 
-        APlayer aPlayer = new APlayer(pUUID, playerFile);
-        playerData.put(pUUID, aPlayer);
+        APlayer aPlayer = new APlayer(player.getUniqueId(), playerFile);
+        playerData.put(player.getUniqueId(), aPlayer);
 
         return aPlayer;
     }
+
+    private static void updateDefaultFields(Player player, APlayer aPlayer) {
+
+		aPlayer.playerdata.set("name", player.getName());
+		aPlayer.playerdata.set("displayname", player.getDisplayName());
+		try {
+			aPlayer.playerdata.save(aPlayer.playerFile);
+		} catch (IOException ignored) {}
+	}
 }

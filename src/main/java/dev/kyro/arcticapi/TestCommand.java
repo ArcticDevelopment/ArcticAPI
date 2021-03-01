@@ -20,11 +20,11 @@ public class TestCommand extends ASubCommand {
 		if(!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 
-		FileConfiguration pdata = APlayerData.getPlayerData(player.getUniqueId());
+		FileConfiguration pdata = APlayerData.getPlayerData(player);
 		pdata.set("test", player.getName() + " " + player.getAddress());
-		APlayerData.savePlayerData(player.getUniqueId());
+		APlayerData.savePlayerData(player);
 
-		pdata = APlayerData.getPlayerData(player.getUniqueId());
+		pdata = APlayerData.getPlayerData(player);
 		player.sendMessage(pdata.getString("test"));
 
 //		player.sendMessage("asdf");
