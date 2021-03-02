@@ -45,12 +45,12 @@ public abstract class ABaseCommand implements CommandExecutor {
 
 		for(ASubCommand subCommand : subCommands) {
 
-			String command = "&f/" + baseExecutor + " " + subCommand.getExecutor()
+			String command = "&f &7 &3/" + baseExecutor + " " + subCommand.getExecutor()
 					+ (subCommand.getDescription() != null ? " - " + subCommand.getDescription() : "");
 			helpMessage.addLine(command);
 		}
 
-		helpMessage.border("&f&m---------------&f< HELP >&m---------------").colorize();
+		helpMessage.border("&f&l/&7 &m---------------&f&l < &bHELP &f&l>&7 &m---------------&f &l\\").colorize();
 
 		return helpMessage;
 	}
