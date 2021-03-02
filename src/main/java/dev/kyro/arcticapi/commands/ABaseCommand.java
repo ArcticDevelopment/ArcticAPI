@@ -51,7 +51,7 @@ public abstract class ABaseCommand implements CommandExecutor {
 			helpMessage.addLine(command);
 		}
 
-		helpMessage.addLine("&b&l\\&8&m---------------&7[ &3&lHelp &7]&8&m---------------&b&l/").colorize();
+		helpMessage.addLine("&b&l\\&8&m------------------------------------&b&l/").colorize();
 
 		return helpMessage;
 	}
