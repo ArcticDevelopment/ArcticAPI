@@ -22,7 +22,7 @@ public class AData {
 
 	public AData(String fileName, String path) {
 
-		File dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + path, fileName);
+		dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + path, fileName);
 		if(!dataFile.exists()) createDataFile(fileName, path);
 		configuration = YamlConfiguration.loadConfiguration(dataFile);
 	}
