@@ -1,110 +1,54 @@
 package dev.kyro.arcticapi.data;
 
 import dev.kyro.arcticapi.ArcticAPI;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 @SuppressWarnings("unused")
 public class AData {
 
-	File dataFile;
-	private YamlConfiguration data;
+	private File dataFile;
+	private FileConfiguration configuration;
 
 	public AData(String fileName) {
 
-		this("", fileName);
+		this(fileName, "");
 	}
 
-	public AData(String filePath, String fileName) {
+	public AData(String fileName, String path) {
 
-		dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + filePath, fileName);
+		File dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + path, fileName);
+		if(!dataFile.exists()) createDataFile(fileName, path);
+		configuration = YamlConfiguration.loadConfiguration(dataFile);
+	}
+
+	public FileConfiguration getConfiguration() {
+		return configuration;
+	}
+
+	public void saveDataFile() {
 
 		try {
-
-			if(!dataFile.exists()) dataFile.createNewFile();
-		} catch(Exception ignored) { }
-
-		data = YamlConfiguration.loadConfiguration(dataFile);
+			configuration.save(dataFile);
+		} catch(Exception ignored) {}
 	}
 
-	public void set(String path, LinkedHashMap<String, Object> map) {
+	private static FileConfiguration createDataFile(String fileName, String path) {
 
-		for(Map.Entry<String, Object> entry : map.entrySet()) {
+		File dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + path, fileName + ".yml");
+		if(!dataFile.exists()) {
+			try {
+				boolean ignored = dataFile.getParentFile().mkdirs();
+				boolean ignored2 = dataFile.createNewFile();
+			} catch(IOException exception) {
 
-			set(path + "." + entry.getKey(), entry.getValue());
+				exception.printStackTrace();
+			}
 		}
-	}
 
-	public void set(String path, Object object) {
-
-		data.set(path, object);
-	}
-
-	public void addToList(String path, Object object) {
-
-		List<Object> list = getList(path);
-		list.add(object);
-
-		set(path, list);
-	}
-
-	public void removeFromList(String path, Object object) {
-
-		List<Object> list = getList(path);
-		list.remove(object);
-
-		set(path, list);
-	}
-
-	public Object get(String path) {
-
-		return data.get(path);
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<Object> getList(String path) {
-
-		return (List<Object>) data.getList(path);
-	}
-
-	public String getString(String path) {
-
-		return data.getString(path);
-	}
-
-	public boolean getBoolean(String path) {
-
-		return data.getBoolean(path);
-	}
-
-	public int getInt(String path) {
-
-		return data.getInt(path);
-	}
-
-	public double getDouble(String path) {
-
-		return data.getDouble(path);
-	}
-
-	public List<String> getStringList(String path) {
-
-		return data.getStringList(path);
-	}
-
-	public void saveData() {
-
-		if(dataFile == null || data == null) return;
-
-		try {
-			data.save(dataFile);
-		} catch(IOException exception) {
-			exception.printStackTrace();
-		}
+		return YamlConfiguration.loadConfiguration(dataFile);
 	}
 }
