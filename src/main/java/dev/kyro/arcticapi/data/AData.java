@@ -12,8 +12,11 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class AData {
 
-	private File dataFile;
+	private final File dataFile;
 	private FileConfiguration configuration;
+
+	private final String fileName;
+	private final String path;
 
 	public AData(String fileName) {
 
@@ -21,6 +24,9 @@ public class AData {
 	}
 
 	public AData(String fileName, String path) {
+
+		this.fileName = fileName;
+		this.path = path;
 
 		dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + path, fileName + ".yml");
 		if(!dataFile.exists()) createDataFile(fileName, path);
@@ -31,7 +37,15 @@ public class AData {
 		return configuration;
 	}
 
+	public void reloadDataFile() {
+
+		if(!dataFile.exists()) createDataFile(fileName, path);
+		configuration = YamlConfiguration.loadConfiguration(dataFile);
+	}
+
 	public void saveDataFile() {
+
+		if(!dataFile.exists()) createDataFile(fileName, path);
 
 		try {
 			configuration.save(dataFile);
