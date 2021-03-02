@@ -1,10 +1,13 @@
 package dev.kyro.arcticapi.misc;
 
+import org.bukkit.ChatColor;
+
+import java.util.Collections;
 import java.util.TreeMap;
 
-public class AMisc {
+public class AUtil {
 
-	private final static TreeMap<Integer, String> map = new TreeMap<Integer, String>();
+	private final static TreeMap<Integer, String> map = new TreeMap<>();
 
 	static {
 
@@ -30,6 +33,13 @@ public class AMisc {
 			return map.get(number);
 		}
 		return map.get(l) + toRoman(number-l);
+	}
+
+	public static String createProgressBar(String tickMark, ChatColor fullColor, ChatColor emptyColor, int length, double percentFull) {
+
+		int full = (int) (length * percentFull / 100);
+		return fullColor.toString() + String.join("", Collections.nCopies(full, tickMark)
+				+ emptyColor.toString() + String.join("", Collections.nCopies(length - full, tickMark)));
 	}
 }
 
