@@ -77,4 +77,9 @@ public class AConfig {
 
         return config.getStringList(path);
     }
+
+    public static void saveConfig() {
+
+		ArcticAPI.PLUGIN.saveConfig();
+	}
 }
