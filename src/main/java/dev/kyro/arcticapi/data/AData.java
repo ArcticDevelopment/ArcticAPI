@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -51,6 +52,27 @@ public class AData {
 		}
 
 		return YamlConfiguration.loadConfiguration(dataFile);
+	}
+
+	public void set(String path, Object object) {
+
+		configuration.set(path, object);
+	}
+
+	public void addToList(String path, Object object) {
+
+		List<Object> list = getList(path) != null ? getList(path) : new ArrayList<>();
+		list.add(object);
+
+		set(path, list);
+	}
+
+	public void removeFromList(String path, Object object) {
+
+		List<Object> list = getList(path);
+		list.remove(object);
+
+		set(path, list);
 	}
 
 	public Object get(String path) {
