@@ -93,6 +93,7 @@ public class AInventoryBuilder {
 
 			ItemStack item = inventory.getItem(slot);
 			AItemStackBuilder itemStackBuilder = new AItemStackBuilder(item).addEnchantGlint(hideFlag);
+			inventory.setItem(slot, itemStackBuilder.getItemStack());
 	    }
 
         return this;
