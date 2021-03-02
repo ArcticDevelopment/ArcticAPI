@@ -101,7 +101,6 @@ public class APlayerData implements Listener {
 	private static APlayer createPlayerData(Player player) {
 
 		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/playerdata/", player.getUniqueId() + ".yml");
-
 		if(!playerFile.exists()) {
 			try {
 				boolean ignored = playerFile.getParentFile().mkdirs();
