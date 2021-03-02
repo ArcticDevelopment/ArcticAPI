@@ -81,7 +81,7 @@ public class AItemStackBuilder {
 
 		if(itemStack.getType() == Material.AIR) return this;
 
-		itemStack.addUnsafeEnchantment(Enchantment.LUCK, 1);
+		itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 
 		if(!hideFlag) return this;
 
