@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public class AData {
@@ -50,5 +51,41 @@ public class AData {
 		}
 
 		return YamlConfiguration.loadConfiguration(dataFile);
+	}
+
+	public Object get(String path) {
+
+		return configuration.get(path);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Object> getList(String path) {
+
+		return (List<Object>) configuration.getList(path);
+	}
+
+	public String getString(String path) {
+
+		return configuration.getString(path);
+	}
+
+	public boolean getBoolean(String path) {
+
+		return configuration.getBoolean(path);
+	}
+
+	public int getInt(String path) {
+
+		return configuration.getInt(path);
+	}
+
+	public double getDouble(String path) {
+
+		return configuration.getDouble(path);
+	}
+
+	public List<String> getStringList(String path) {
+
+		return configuration.getStringList(path);
 	}
 }
