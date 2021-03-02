@@ -38,8 +38,8 @@ public class AUtil {
 	public static String createProgressBar(String tickMark, ChatColor fullColor, ChatColor emptyColor, int length, double percentFull) {
 
 		int full = (int) (length * percentFull / 100);
-		return fullColor.toString() + String.join("", Collections.nCopies(full, tickMark)
-				+ emptyColor.toString() + String.join("", Collections.nCopies(length - full, tickMark)));
+		return fullColor.toString() + String.join("", Collections.nCopies(full, tickMark))
+				+ emptyColor.toString() + String.join("", Collections.nCopies(length - full, tickMark));
 	}
 }
 
