@@ -42,16 +42,16 @@ public abstract class ABaseCommand implements CommandExecutor {
 	protected AMessageBuilder createHelp() {
 
 		AMessageBuilder helpMessage = new AMessageBuilder();
-		helpMessage.addLine("&f&l/&7 &m---------------&f&l < &bHELP &f&l>&7 &m---------------&f &l\\").colorize();
+		helpMessage.addLine("&b&l/&8&m---------------&7[ &3&lHelp &7]&8&m---------------&b&l\\").colorize();
 
 		for(ASubCommand subCommand : subCommands) {
 
-			String command = "&f &7 &f &3/" + baseExecutor + " " + subCommand.getExecutor()
-					+ (subCommand.getDescription() != null ? " - " + subCommand.getDescription() : "");
+			String command = "&7 - /&f" + baseExecutor + " &3&l" + subCommand.getExecutor()
+					+ (subCommand.getDescription() != null ? "&7 - &f" + subCommand.getDescription() : "");
 			helpMessage.addLine(command);
 		}
 
-		helpMessage.addLine("&f&l\\&7 &m---------------&f&l < &bHELP &f&l>&7 &m---------------&f &l/").colorize();
+		helpMessage.addLine("&b&l\\&8&m---------------&7[ &3&lHelp &7]&8&m---------------&b&l/").colorize();
 
 		return helpMessage;
 	}
