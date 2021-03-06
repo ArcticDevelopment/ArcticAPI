@@ -5,43 +5,31 @@ import org.bukkit.command.CommandSender;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ASubCommand {
+@SuppressWarnings("unused")
+public abstract class ASubCommand implements ACommand {
 
 	private String executor;
-	private String description;
 	private List<String> aliases = new ArrayList<>();
 
 	public ASubCommand(String executor) {
 
-		this(executor, null);
-	}
-
-	public ASubCommand(String executor, String description) {
-
 		this.executor = executor;
-		this.description = description;
 	}
 
 	public abstract void execute(CommandSender sender, List<String> args);
 
+	@Override
 	public String getExecutor() {
 		return executor;
 	}
 
-	public void setExecutor(String executor) {
-		this.executor = executor;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	@Override
 	public List<String> getAliases() {
 		return aliases;
+	}
+
+	public void setExecutor(String executor) {
+		this.executor = executor;
 	}
 
 	public void setAliases(List<String> aliases) {

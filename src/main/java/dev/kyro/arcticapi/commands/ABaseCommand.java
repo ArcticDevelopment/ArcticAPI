@@ -10,30 +10,47 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class ABaseCommand implements CommandExecutor {
+@SuppressWarnings("unused")
+public abstract class ABaseCommand implements CommandExecutor, ACommand {
 
-	private final List<ASubCommand> subCommands = new ArrayList<>();
+	private final List<ACommand> subCommands = new ArrayList<>();
 
-	private String baseExecutor;
+	private String executor;
+	private List<String> aliases = new ArrayList<>();
 
-	public ABaseCommand(String baseExecutor) {
+	public ABaseCommand(String executor) {
 
-		this.baseExecutor = baseExecutor;
-		ArcticAPI.PLUGIN.getCommand(baseExecutor).setExecutor(this);
+		this.executor = executor;
+		ArcticAPI.PLUGIN.getCommand(executor).setExecutor(this);
+	}
+
+	public ABaseCommand(ACommand baseCommand, String executor) {
+
+		registerCommand(baseCommand);
 	}
 
 	public abstract void executeBase(CommandSender sender, List<String> args);
 
 	public abstract void executeFail(CommandSender sender, List<String> args);
 
-	public void registerCommand(ASubCommand subCommand) {
+	@Override
+	public String getExecutor() {
+		return executor;
+	}
+
+	@Override
+	public List<String> getAliases() {
+		return aliases;
+	}
+
+	public void registerCommand(ACommand subCommand) {
 
 		subCommands.add(subCommand);
 	}
 
-	public void registerCommands(ASubCommand... subCommands) {
+	public void registerCommands(ACommand... subCommands) {
 
-		for(ASubCommand subCommand : subCommands) {
+		for(ACommand subCommand : subCommands) {
 
 			registerCommand(subCommand);
 		}
@@ -44,10 +61,9 @@ public abstract class ABaseCommand implements CommandExecutor {
 		AMessageBuilder helpMessage = new AMessageBuilder();
 		helpMessage.addLine("&b&l/&8&m---------------&7[ &3&lHelp &7]&8&m---------------&b&l\\").colorize();
 
-		for(ASubCommand subCommand : subCommands) {
+		for(ACommand subCommand : subCommands) {
 
-			String command = "&7 - /&f" + baseExecutor + " &3&l" + subCommand.getExecutor()
-					+ (subCommand.getDescription() != null ? "&7 - &f" + subCommand.getDescription() : "");
+			String command = "&7 - /&f" + executor + " &3&l" + subCommand.getExecutor();
 			helpMessage.addLine(command);
 		}
 
@@ -66,13 +82,16 @@ public abstract class ABaseCommand implements CommandExecutor {
 			return false;
 		}
 
-		for(ASubCommand subCommand : subCommands) {
+		for(ACommand subCommand : subCommands) {
 
 			if(!subCommand.getExecutor().equals(args[0]) && !subCommand.getAliases().contains(args[0])) continue;
-
 			argsList.remove(0);
 
-			subCommand.execute(sender, argsList);
+			if(subCommand instanceof ABaseCommand) {
+				((ABaseCommand) subCommand).onCommand(sender, cmd, label, args);
+			} else if(subCommand instanceof ASubCommand) {
+				((ASubCommand) subCommand).execute(sender, argsList);
+			}
 			return false;
 		}
 
