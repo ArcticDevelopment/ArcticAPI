@@ -27,7 +27,7 @@ public abstract class ABaseCommand implements CommandExecutor, ACommand {
 	public ABaseCommand(ABaseCommand baseCommand, String executor) {
 
 		this.executor = executor;
-		baseCommand.registerCommand(baseCommand);
+		baseCommand.registerCommand(this);
 	}
 
 	public abstract void executeBase(CommandSender sender, List<String> args);
