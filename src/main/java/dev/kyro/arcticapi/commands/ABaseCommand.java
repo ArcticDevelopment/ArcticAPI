@@ -24,10 +24,10 @@ public abstract class ABaseCommand implements CommandExecutor, ACommand {
 		ArcticAPI.PLUGIN.getCommand(executor).setExecutor(this);
 	}
 
-	public ABaseCommand(ACommand baseCommand, String executor) {
+	public ABaseCommand(ABaseCommand baseCommand, String executor) {
 
 		this.executor = executor;
-		registerCommand(baseCommand);
+		baseCommand.registerCommand(baseCommand);
 	}
 
 	public abstract void executeBase(CommandSender sender, List<String> args);
