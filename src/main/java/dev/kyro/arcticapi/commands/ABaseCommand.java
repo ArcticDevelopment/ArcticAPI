@@ -90,7 +90,8 @@ public abstract class ABaseCommand implements CommandExecutor, ACommand {
 			argsList.remove(0);
 
 			if(subCommand instanceof ABaseCommand) {
-				((ABaseCommand) subCommand).onCommand(sender, cmd, label, (String[]) argsList.toArray());
+				args = argsList.toArray(args);
+				((ABaseCommand) subCommand).onCommand(sender, cmd, label, args);
 				System.out.println(executor  + " executing base: " + subCommand.getExecutor());
 			} else if(subCommand instanceof ASubCommand) {
 				((ASubCommand) subCommand).execute(sender, argsList);
