@@ -31,6 +31,16 @@ public class AOutput {
 		}
 	}
 
+	public static void sendIfPlayer(CommandSender sender, String message) {
+
+		if(sender instanceof Player) send(sender, message);
+	}
+
+	public static void errorIfPlayer(CommandSender sender, String message) {
+
+		if(sender instanceof Player) error(sender, message);
+	}
+
 	public static void send(Player player, String message) {
 
 		send((CommandSender) player, message);
