@@ -68,7 +68,7 @@ public class AUtil {
 
 		if(!secondChance) {
 
-			AOutput.send(player, "&4&lFULL INVENTORY! Item dropped at your current location");
+			AOutput.error(player, "&4&lFULL INVENTORY! Item dropped at your current location");
 			player.getWorld().dropItem(player.getLocation(), itemStack);
 			return;
 		}
@@ -87,7 +87,7 @@ public class AUtil {
 					AOutput.send(player, "The item has been safely added to your inventory");
 				} else {
 
-					AOutput.send(player, "The item has been dropped on the ground at your location");
+					AOutput.error(player, "The item has been dropped on the ground at your location");
 					player.getWorld().dropItem(player.getLocation(), itemStack);
 				}
 			}
