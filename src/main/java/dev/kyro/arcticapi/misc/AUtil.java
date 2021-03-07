@@ -49,6 +49,11 @@ public class AUtil {
 				+ emptyColor.toString() + String.join("", Collections.nCopies(length - full, tickMark));
 	}
 
+	public static void giveItemSafely(Player player, ItemStack itemStack) {
+
+		giveItemSafely(player, itemStack, false);
+	}
+
 	public static void giveItemSafely(Player player, ItemStack itemStack, boolean secondChance) {
 
 		Inventory inventory = player.getInventory();
