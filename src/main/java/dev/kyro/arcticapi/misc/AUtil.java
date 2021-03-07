@@ -56,10 +56,8 @@ public class AUtil {
 		if(inventory.firstEmpty() != -1) {
 
 			inventory.addItem(itemStack);
+			return;
 		}
-
-		AOutput.error(player, "&4&lWARNING!!! YOUR INVENTORY IF FULL." +
-				" Please make space for an item to be added or it will be dropped on the ground in 5 seconds.");
 
 		ASound.play(player, Sound.NOTE_PLING);
 
@@ -67,9 +65,11 @@ public class AUtil {
 
 			AOutput.send(player, "The item has been dropped on the ground at your location");
 			player.getWorld().dropItem(player.getLocation(), itemStack);
-
 			return;
 		}
+
+		AOutput.error(player, "&4&lWARNING!!! YOUR INVENTORY IF FULL." +
+				" Please make space for an item to be added or it will be dropped on the ground in 5 seconds.");
 
 		new BukkitRunnable() {
 			@Override
