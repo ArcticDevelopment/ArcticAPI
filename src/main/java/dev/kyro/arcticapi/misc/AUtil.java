@@ -63,12 +63,12 @@ public class AUtil {
 
 		if(!secondChance) {
 
-			AOutput.send(player, "The item has been dropped on the ground at your location");
+			AOutput.send(player, "&4&lFULL INVENTORY! Item dropped at your current location");
 			player.getWorld().dropItem(player.getLocation(), itemStack);
 			return;
 		}
 
-		AOutput.error(player, "&4&lWARNING!!! YOUR INVENTORY IF FULL." +
+		AOutput.error(player, "&4&lFULL INVENTORY!" +
 				" Please make space for an item to be added or it will be dropped on the ground in 5 seconds.");
 
 		new BukkitRunnable() {
