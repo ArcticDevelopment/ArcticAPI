@@ -19,6 +19,7 @@ repositories {
     maven { url "https://libraries.minecraft.net/" }
     maven { url "http://ci.ender.zone/plugin/repository/everything/" }
     maven { url "https://cdn.rawgit.com/Rayzr522/maven-repo/master/" }
+    maven { url "https://repo.extendedclip.com/content/repositories/placeholderapi/" }
 
     flatDir { dirs 'libs' }
 }
@@ -29,6 +30,7 @@ dependencies {
 
     compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.0'
     compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.2'
+    compileOnly 'me.clip:placeholderapi:2.10.9'
 
 //    Factions Plugins
     compileOnly 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'

@@ -40,4 +40,11 @@ public class AHook {
 
 		return factionsPlugin != null ? factionsPlugin.getRelation(player, otherPlayer) : null;
 	}
+
+
+
+	public static void registerPlaceholder(APAPIPlaceholder placeholder) {
+
+		APAPIExpansion.registeredPlaceholders.add(placeholder);
+	}
 }

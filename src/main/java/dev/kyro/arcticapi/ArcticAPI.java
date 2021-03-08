@@ -1,15 +1,14 @@
 package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.data.AConfig;
-import dev.kyro.arcticapi.data.APlayer;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.gui.AInventoryGUIManager;
 import dev.kyro.arcticapi.hooks.enums.SupportedPlugins;
+import dev.kyro.arcticapi.hooks.APAPIExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("unused")
 public class ArcticAPI {
@@ -46,6 +45,13 @@ public class ArcticAPI {
 
 		Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), PLUGIN);
 		Bukkit.getPluginManager().registerEvents(new APlayerData(), PLUGIN);
+	}
+
+	public static void setupPlaceholderAPI(@NotNull String identifier) {
+
+		if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null) return;
+
+		new APAPIExpansion(identifier).register();
 	}
 
 	public static void logAPI(String message) {
