@@ -2,6 +2,7 @@ package dev.kyro.arcticapi.data;
 
 import dev.kyro.arcticapi.ArcticAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -68,10 +69,20 @@ public class APlayerData implements Listener {
 		}.runTaskLater(ArcticAPI.PLUGIN, 10L);
 	}
 
+	public static FileConfiguration getPlayerData(OfflinePlayer player) {
+
+		return getPlayerData(player.getUniqueId());
+	}
+
 	public static FileConfiguration getPlayerData(Player player) {
 
-		if(!playerData.containsKey(player.getUniqueId())) return createPlayerData(player).playerdata;
-		APlayer aPlayer = playerData.get(player.getUniqueId());
+		return getPlayerData(player.getUniqueId());
+	}
+
+	public static FileConfiguration getPlayerData(UUID uuid) {
+
+		if(!playerData.containsKey(uuid)) return createPlayerData(uuid).playerdata;
+		APlayer aPlayer = playerData.get(uuid);
 
 		return aPlayer.playerdata;
 	}
@@ -88,19 +99,29 @@ public class APlayerData implements Listener {
 		return playerMap;
 	}
 
+	public static void savePlayerData(OfflinePlayer player) {
+
+		savePlayerData(player.getUniqueId());
+	}
+
 	public static void savePlayerData(Player player) {
 
-		if(!playerData.containsKey(player.getUniqueId())) return;
-		APlayer aPlayer = playerData.get(player.getUniqueId());
+		savePlayerData(player.getUniqueId());
+	}
+
+	public static void savePlayerData(UUID uuid) {
+
+		if(!playerData.containsKey(uuid)) return;
+		APlayer aPlayer = playerData.get(uuid);
 
 		try {
 			aPlayer.playerdata.save(aPlayer.playerFile);
 		} catch (IOException ignored) {}
 	}
 
-	private static APlayer createPlayerData(Player player) {
+	private static APlayer createPlayerData(UUID uuid) {
 
-		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/playerdata/", player.getUniqueId() + ".yml");
+		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/playerdata/", uuid + ".yml");
 		if(!playerFile.exists()) {
 			try {
 				boolean ignored = playerFile.getParentFile().mkdirs();
@@ -111,8 +132,8 @@ public class APlayerData implements Listener {
             }
         }
 
-        APlayer aPlayer = new APlayer(player.getUniqueId(), playerFile);
-        playerData.put(player.getUniqueId(), aPlayer);
+        APlayer aPlayer = new APlayer(uuid, playerFile);
+        playerData.put(uuid, aPlayer);
 
         return aPlayer;
     }
