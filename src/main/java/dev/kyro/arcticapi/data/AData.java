@@ -25,12 +25,18 @@ public class AData {
 
 	public AData(String fileName, String path) {
 
+		this(fileName, path, true);
+	}
+
+	public AData(String fileName, String path, boolean saveResource) {
+
 		this.fileName = fileName;
 		this.path = path;
 
 		dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + path, fileName + ".yml");
 		if(!dataFile.exists()) createDataFile(fileName, path);
 		configuration = YamlConfiguration.loadConfiguration(dataFile);
+		if(saveResource) ArcticAPI.PLUGIN.saveResource(fileName, true);
 	}
 
 	public FileConfiguration getConfiguration() {
