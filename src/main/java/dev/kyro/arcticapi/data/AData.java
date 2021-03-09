@@ -36,7 +36,7 @@ public class AData {
 		dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + path, fileName + ".yml");
 		if(!dataFile.exists()) createDataFile(fileName, path);
 		configuration = YamlConfiguration.loadConfiguration(dataFile);
-		if(saveResource) ArcticAPI.PLUGIN.saveResource(fileName, true);
+		if(saveResource) ArcticAPI.PLUGIN.saveResource(fileName + ".yml", true);
 	}
 
 	public FileConfiguration getConfiguration() {
