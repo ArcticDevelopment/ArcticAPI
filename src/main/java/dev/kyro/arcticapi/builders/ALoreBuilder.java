@@ -15,7 +15,10 @@ public class ALoreBuilder {
 	/**
 	 * Builds lore from the ground.
 	 */
-	public ALoreBuilder() { }
+	public ALoreBuilder(String... lines) {
+
+		addLore(lines);
+	}
 
 	/**
 	 * Build around a pre-existing item.
@@ -56,7 +59,9 @@ public class ALoreBuilder {
 
 	/**
 	 * Translates color codes through the whole lore.
+	 * @Deprecated Now automatically called when getting lore
 	 */
+	@Deprecated
 	public ALoreBuilder colorize() {
 
 		for(int i = 0; i < lore.size(); i++) {
@@ -70,6 +75,6 @@ public class ALoreBuilder {
 	}
 
 	public List<String> getLore() {
-		return lore;
+		return colorize().lore;
 	}
 }

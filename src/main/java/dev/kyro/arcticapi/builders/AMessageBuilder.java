@@ -48,6 +48,7 @@ public class AMessageBuilder {
 
 	/**
 	 * Translates color codes through the whole message.
+	 * @Deprecated Now automatically called when getting lore
 	 */
 	public AMessageBuilder colorize() {
 
@@ -62,7 +63,7 @@ public class AMessageBuilder {
 	}
 
 	public List<String> getMessage() {
-		return message;
+		return colorize().message;
 	}
 
 	public void send(Player player) {

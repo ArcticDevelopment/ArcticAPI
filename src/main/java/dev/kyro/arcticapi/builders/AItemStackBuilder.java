@@ -81,11 +81,23 @@ public class AItemStackBuilder {
 
 		if(itemStack.getType() == Material.AIR) return this;
 
-		itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+		itemStack.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
+		if(!hideFlag) itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		updateItemMeta();
 
-		if(!hideFlag) return this;
+		return this;
+	}
 
-		itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+	/**
+	 * Adds the unbreakable item flag to the item.
+	 * @param hideFlag whether to add the item flag that hides the unbreakable
+	 */
+	public AItemStackBuilder addUnbreakable(boolean hideFlag) {
+
+		if(itemStack.getType() == Material.AIR) return this;
+
+		itemMeta.spigot().setUnbreakable(true);
+		if(hideFlag) itemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 		updateItemMeta();
 
 		return this;
