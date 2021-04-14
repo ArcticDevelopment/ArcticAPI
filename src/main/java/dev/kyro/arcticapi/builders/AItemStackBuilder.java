@@ -1,6 +1,7 @@
 package dev.kyro.arcticapi.builders;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -51,7 +52,7 @@ public class AItemStackBuilder {
 
 	public AItemStackBuilder setName(String name) {
 
-		itemMeta.setDisplayName(name);
+		itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
 		updateItemMeta();
 
 		return this;
