@@ -20,7 +20,7 @@ public class AItemStackBuilder {
 	 */
 	public AItemStackBuilder(Material material) {
 
-		this(material, 0);
+		this(material, 1);
 	}
 
 	/**
