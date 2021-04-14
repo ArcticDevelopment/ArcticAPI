@@ -15,6 +15,13 @@ public class ALoreBuilder {
 	/**
 	 * Builds lore from the ground.
 	 */
+	public ALoreBuilder() {}
+
+	public ALoreBuilder(List<String> lines) {
+
+		addLore(lines);
+	}
+
 	public ALoreBuilder(String... lines) {
 
 		addLore(lines);
