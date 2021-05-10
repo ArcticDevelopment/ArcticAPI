@@ -41,7 +41,7 @@ public class APAPIExpansion extends PlaceholderExpansion {
 
 	@Override
 	public @NotNull String getVersion(){
-		return ArcticAPI.PLUGIN.getDescription().getVersion();
+		return ArcticAPI.INSTANCE.getDescription().getVersion();
 	}
 
 	@Override

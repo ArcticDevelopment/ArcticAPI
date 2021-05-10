@@ -33,10 +33,10 @@ public class AData {
 		this.fileName = fileName;
 		this.path = path;
 
-		dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/" + path, fileName + ".yml");
+		dataFile = new File(ArcticAPI.INSTANCE.getDataFolder() + "/" + path, fileName + ".yml");
 		if(!dataFile.exists()) createDataFile(fileName, path);
 		configuration = YamlConfiguration.loadConfiguration(dataFile);
-		if(saveResource) ArcticAPI.PLUGIN.saveResource(fileName + ".yml", true);
+		if(saveResource) ArcticAPI.INSTANCE.saveResource(fileName + ".yml", true);
 	}
 
 	public FileConfiguration getConfiguration() {
@@ -60,7 +60,7 @@ public class AData {
 
 	private static FileConfiguration createDataFile(String fileName, String path) {
 
-		File dataFile = new File(ArcticAPI.PLUGIN.getDataFolder() + path, fileName + ".yml");
+		File dataFile = new File(ArcticAPI.INSTANCE.getDataFolder() + path, fileName + ".yml");
 		if(!dataFile.exists()) {
 			try {
 				boolean ignored = dataFile.getParentFile().mkdirs();

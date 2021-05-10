@@ -91,7 +91,7 @@ public class AUtil {
 					player.getWorld().dropItem(player.getLocation(), itemStack);
 				}
 			}
-		}.runTaskLater(ArcticAPI.PLUGIN, 100L);
+		}.runTaskLater(ArcticAPI.INSTANCE, 100L);
 	}
 }
 

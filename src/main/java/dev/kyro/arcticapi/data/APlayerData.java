@@ -35,9 +35,9 @@ public class APlayerData implements Listener {
 					APlayerData.updateDefaultFields(player, aPlayer);
 				}
 			}
-		}.runTaskTimer(ArcticAPI.PLUGIN, 20L, 20L);
+		}.runTaskTimer(ArcticAPI.INSTANCE, 20L, 20L);
 
-		File folder = new File(ArcticAPI.PLUGIN.getDataFolder(), "playerdata/");
+		File folder = new File(ArcticAPI.INSTANCE.getDataFolder(), "playerdata/");
 		if(!folder.exists()) return;
 		File[] files = folder.listFiles();
 
@@ -66,7 +66,7 @@ public class APlayerData implements Listener {
 			public void run() {
 				updateDefaultFields(player, aPlayer);
 			}
-		}.runTaskLater(ArcticAPI.PLUGIN, 10L);
+		}.runTaskLater(ArcticAPI.INSTANCE, 10L);
 	}
 
 	public static FileConfiguration getPlayerData(OfflinePlayer player) {
@@ -121,7 +121,7 @@ public class APlayerData implements Listener {
 
 	private static APlayer createPlayerData(UUID uuid) {
 
-		File playerFile = new File(ArcticAPI.PLUGIN.getDataFolder() + "/playerdata/", uuid + ".yml");
+		File playerFile = new File(ArcticAPI.INSTANCE.getDataFolder() + "/playerdata/", uuid + ".yml");
 		if(!playerFile.exists()) {
 			try {
 				boolean ignored = playerFile.getParentFile().mkdirs();

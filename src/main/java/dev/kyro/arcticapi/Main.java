@@ -1,27 +1,22 @@
 package dev.kyro.arcticapi;
 
 import dev.kyro.arcticapi.commands.ABaseCommand;
-import dev.kyro.arcticapi.hooks.pluginhooks.WorldGuardHook;
+import dev.kyro.arcticapi.events.armor.AArmorModifyEvent;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin implements Listener {
 
 	public static Plugin INSTANCE;
 	public static Plugin WORLDGUARD;
 
-	@Override
-	public void onLoad() {
+//	@EventHandler
+	public static void onArmorChange(AArmorModifyEvent event) {
 
-		WORLDGUARD = getServer().getPluginManager().getPlugin("WorldGuard");
-		if(WORLDGUARD == null) {
-
-			System.out.println("WorldGuard not found");
-		} else {
-
-			System.out.println("WorldGuard loaded");
-			WorldGuardHook.registerFlag("arctic-test", false);
-		}
+		System.out.println(event.getArmorType() + "");
+		System.out.println("old: " + event.getOldArmorPiece().getType());
+		System.out.println("new: " + event.getNewArmorPiece().getType());
 	}
 
 	@Override
@@ -33,18 +28,10 @@ public class Main extends JavaPlugin {
 
 		ArcticAPI.init(this, "", "");
 
-//		getCommand("api").setExecutor(new TestCommand());
+		getServer().getPluginManager().registerEvents(this, this);
 
 		ABaseCommand apiCommand = new TestBase("api");
 		apiCommand.registerCommand(new TestCommand("test"));
-
-		ArcticAPI.logAPI("&6asdfasdfasd-------------------");
-		ArcticAPI.logAPI("&aasdfasdfasdfasdfasdf-------------------------------");
-		ArcticAPI.logAPI("&lasdfasdfasdfasdfasdf-------------------------------");
-		ArcticAPI.logAPI("&masdfasdfasdfasdfasdf-------------------------------");
-		ArcticAPI.logAPI("&oasdfasdfasdfasdfasdf-------------------------------");
-		ArcticAPI.logAPI("&uasdfasdfasdfasdfasdf-------------------------------");
-		ArcticAPI.logAPI("&kasdfasdfasdfasdfasdf-------------------------------");
 	}
 
 	@Override

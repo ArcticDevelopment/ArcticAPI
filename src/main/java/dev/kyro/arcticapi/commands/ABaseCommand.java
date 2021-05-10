@@ -21,7 +21,7 @@ public abstract class ABaseCommand implements CommandExecutor, ACommand {
 	public ABaseCommand(String executor) {
 
 		this.executor = executor;
-		ArcticAPI.PLUGIN.getCommand(executor).setExecutor(this);
+		ArcticAPI.INSTANCE.getCommand(executor).setExecutor(this);
 	}
 
 	public ABaseCommand(ABaseCommand baseCommand, String executor) {
