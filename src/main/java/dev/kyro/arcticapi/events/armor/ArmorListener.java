@@ -28,15 +28,22 @@ public class ArmorListener implements Listener {
 
 					boolean armorChanged = false;
 
-					ItemStack[] currentArmor = player.getInventory().getArmorContents();
-					previousArmorMap.putIfAbsent(player.getUniqueId(), getEmptyArmor());
-					ItemStack[] previousArmor = previousArmorMap.get(player.getUniqueId());
+					ItemStack[] currentArmor = new ItemStack[5];
 					for(int i = 0; i < 4; i++) {
+						currentArmor[i] = player.getInventory().getArmorContents()[i];
+					}
+					currentArmor[4] = player.getItemInHand();
+
+					previousArmorMap.putIfAbsent(player.getUniqueId(), getEmptyArmor());
+
+					ItemStack[] previousArmor = previousArmorMap.get(player.getUniqueId());
+
+					for(int i = 0; i < 5; i++) {
 
 						if(previousArmor[i].equals(currentArmor[i])) continue;
 						if(previousArmor[i].getType() == Material.AIR && currentArmor[i].getType() == Material.AIR) continue;
 
-						Bukkit.getServer().getPluginManager().callEvent(new AArmorModifyEvent(player, previousArmor[i], currentArmor[i]));
+						Bukkit.getServer().getPluginManager().callEvent(new AChangeEquipment(player, previousArmor[i], currentArmor[i]));
 						armorChanged = true;
 					}
 
@@ -52,12 +59,16 @@ public class ArmorListener implements Listener {
 		Player player = event.getPlayer();
 		boolean armorChanged = false;
 
-		ItemStack[] currentArmor = player.getInventory().getArmorContents();
+		ItemStack[] currentArmor = new ItemStack[5];
 		for(int i = 0; i < 4; i++) {
+			currentArmor[i] = player.getInventory().getArmorContents()[i];
+		}
+		currentArmor[4] = player.getItemInHand();
+		for(int i = 0; i < 5; i++) {
 
 			if(currentArmor[i].getType() == Material.AIR) continue;
 
-			Bukkit.getServer().getPluginManager().callEvent(new AArmorModifyEvent(player, currentArmor[i], new ItemStack(Material.AIR)));
+			Bukkit.getServer().getPluginManager().callEvent(new AChangeEquipment(player, currentArmor[i], new ItemStack(Material.AIR)));
 			armorChanged = true;
 		}
 
@@ -66,6 +77,7 @@ public class ArmorListener implements Listener {
 
 	public static ItemStack[] getEmptyArmor() {
 
-		return new ItemStack[] { new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR) };
+		return new ItemStack[] { new ItemStack(Material.AIR), new ItemStack(Material.AIR), new ItemStack(Material.AIR),
+				new ItemStack(Material.AIR), new ItemStack(Material.AIR) };
 	}
 }
