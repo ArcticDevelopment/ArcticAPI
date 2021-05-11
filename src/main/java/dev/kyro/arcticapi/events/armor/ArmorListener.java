@@ -43,7 +43,7 @@ public class ArmorListener implements Listener {
 						if(previousArmor[i].equals(currentArmor[i])) continue;
 						if(previousArmor[i].getType() == Material.AIR && currentArmor[i].getType() == Material.AIR) continue;
 
-						Bukkit.getServer().getPluginManager().callEvent(new AChangeEquipment(player, previousArmor[i], currentArmor[i]));
+						Bukkit.getServer().getPluginManager().callEvent(new AChangeEquipmentEvent(player, previousArmor[i], currentArmor[i], previousArmor));
 						armorChanged = true;
 					}
 
@@ -59,16 +59,16 @@ public class ArmorListener implements Listener {
 		Player player = event.getPlayer();
 		boolean armorChanged = false;
 
-		ItemStack[] currentArmor = new ItemStack[5];
+		ItemStack[] previousArmor = new ItemStack[5];
 		for(int i = 0; i < 4; i++) {
-			currentArmor[i] = player.getInventory().getArmorContents()[i];
+			previousArmor[i] = player.getInventory().getArmorContents()[i];
 		}
-		currentArmor[4] = player.getItemInHand();
+		previousArmor[4] = player.getItemInHand();
 		for(int i = 0; i < 5; i++) {
 
-			if(currentArmor[i].getType() == Material.AIR) continue;
+			if(previousArmor[i].getType() == Material.AIR) continue;
 
-			Bukkit.getServer().getPluginManager().callEvent(new AChangeEquipment(player, currentArmor[i], new ItemStack(Material.AIR)));
+			Bukkit.getServer().getPluginManager().callEvent(new AChangeEquipmentEvent(player, previousArmor[i], new ItemStack(Material.AIR), previousArmor));
 			armorChanged = true;
 		}
 

@@ -11,19 +11,21 @@ import org.bukkit.inventory.ItemStack;
  * @author Arnah
  * @since Jul 30, 2015
  */
-public class AChangeEquipment extends PlayerEvent implements Cancellable {
+public class AChangeEquipmentEvent extends PlayerEvent implements Cancellable {
 
 	private static final HandlerList handlers = new HandlerList();
 	private boolean cancel = false;
 	private final ArmorType armorType;
 	private final ItemStack oldArmorPiece, newArmorPiece;
+	private final ItemStack[] previousArmor;
 
-	public AChangeEquipment(Player player, ItemStack oldArmorPiece, ItemStack newArmorPiece) {
+	public AChangeEquipmentEvent(Player player, ItemStack oldArmorPiece, ItemStack newArmorPiece, ItemStack[] previousArmor) {
 		super(player);
 //		TODO: Fix armor type (now including held item so this doesn't work really
 		this.armorType = ArmorType.getType(oldArmorPiece != null ? oldArmorPiece : newArmorPiece);
 		this.oldArmorPiece = oldArmorPiece;
 		this.newArmorPiece = newArmorPiece;
+		this.previousArmor = previousArmor;
 	}
 
 	@Override
@@ -55,5 +57,9 @@ public class AChangeEquipment extends PlayerEvent implements Cancellable {
 
 	public ItemStack getNewArmorPiece() {
 		return newArmorPiece;
+	}
+
+	public ItemStack[] getPreviousArmor() {
+		return previousArmor;
 	}
 }
