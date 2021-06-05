@@ -81,18 +81,18 @@ public class APlayerData implements Listener {
 
 	public static FileConfiguration getPlayerData(UUID uuid) {
 
-		for(Map.Entry<UUID, APlayer> entry : playerData.entrySet()) {
-
-			if(!entry.getKey().equals(uuid)) continue;
-			return entry.getValue().playerdata;
-		}
-
-//		if(!playerData.containsKey(uuid)) return createPlayerData(uuid).playerdata;
-//		APlayer aPlayer = playerData.get(uuid);
+//		for(Map.Entry<UUID, APlayer> entry : playerData.entrySet()) {
 //
-//		return aPlayer.playerdata;
+//			if(!entry.getKey().equals(uuid)) continue;
+//			return entry.getValue().playerdata;
+//		}
 
-		return null;
+		if(!playerData.containsKey(uuid)) return createPlayerData(uuid).playerdata;
+		APlayer aPlayer = playerData.get(uuid);
+
+		return aPlayer.playerdata;
+
+//		return null;
 	}
 
 	public static Map<UUID, FileConfiguration> getAllData() {
@@ -119,20 +119,20 @@ public class APlayerData implements Listener {
 
 	public static void savePlayerData(UUID uuid) {
 
-		for(Map.Entry<UUID, APlayer> entry : playerData.entrySet()) {
-
-			if(!entry.getKey().equals(uuid)) continue;
-			try {
-				entry.getValue().playerdata.save(entry.getValue().playerFile);
-			} catch (IOException ignored) {}
-		}
-
-//		if(!playerData.containsKey(uuid)) return;
-//		APlayer aPlayer = playerData.get(uuid);
+//		for(Map.Entry<UUID, APlayer> entry : playerData.entrySet()) {
 //
-//		try {
-//			aPlayer.playerdata.save(aPlayer.playerFile);
-//		} catch (IOException ignored) {}
+//			if(!entry.getKey().equals(uuid)) continue;
+//			try {
+//				entry.getValue().playerdata.save(entry.getValue().playerFile);
+//			} catch (IOException ignored) {}
+//		}
+
+		if(!playerData.containsKey(uuid)) return;
+		APlayer aPlayer = playerData.get(uuid);
+
+		try {
+			aPlayer.playerdata.save(aPlayer.playerFile);
+		} catch (IOException ignored) {}
 	}
 
 	private static APlayer createPlayerData(UUID uuid) {
