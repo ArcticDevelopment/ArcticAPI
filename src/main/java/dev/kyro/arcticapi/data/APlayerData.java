@@ -119,12 +119,20 @@ public class APlayerData implements Listener {
 
 	public static void savePlayerData(UUID uuid) {
 
-		if(!playerData.containsKey(uuid)) return;
-		APlayer aPlayer = playerData.get(uuid);
+		for(Map.Entry<UUID, APlayer> entry : playerData.entrySet()) {
 
-		try {
-			aPlayer.playerdata.save(aPlayer.playerFile);
-		} catch (IOException ignored) {}
+			if(!entry.getKey().equals(uuid)) continue;
+			try {
+				entry.getValue().playerdata.save(entry.getValue().playerFile);
+			} catch (IOException ignored) {}
+		}
+
+//		if(!playerData.containsKey(uuid)) return;
+//		APlayer aPlayer = playerData.get(uuid);
+//
+//		try {
+//			aPlayer.playerdata.save(aPlayer.playerFile);
+//		} catch (IOException ignored) {}
 	}
 
 	private static APlayer createPlayerData(UUID uuid) {
