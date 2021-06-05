@@ -81,10 +81,18 @@ public class APlayerData implements Listener {
 
 	public static FileConfiguration getPlayerData(UUID uuid) {
 
-		if(!playerData.containsKey(uuid)) return createPlayerData(uuid).playerdata;
-		APlayer aPlayer = playerData.get(uuid);
+		for(Map.Entry<UUID, APlayer> entry : playerData.entrySet()) {
 
-		return aPlayer.playerdata;
+			if(!entry.getKey().equals(uuid)) continue;
+			return entry.getValue().playerdata;
+		}
+
+//		if(!playerData.containsKey(uuid)) return createPlayerData(uuid).playerdata;
+//		APlayer aPlayer = playerData.get(uuid);
+//
+//		return aPlayer.playerdata;
+
+		return null;
 	}
 
 	public static Map<UUID, FileConfiguration> getAllData() {
