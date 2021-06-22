@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("unused")
-public abstract class AGUI {
+public class AGUI {
 
 	public Player player;
 
