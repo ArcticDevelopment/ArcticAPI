@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.gui;
+package dev.kyro.arcticapi.guiold;
 
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Material;
@@ -11,8 +11,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("unused")
-public abstract class APagedInventoryGUI extends AInventoryGUI {
+@Deprecated
+public abstract class AOldPagedInventoryGUI extends AOldInventoryGUI {
 
 	public int previousSlot = 0;
 	public ItemStack noPreviousButton = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
@@ -25,7 +25,7 @@ public abstract class APagedInventoryGUI extends AInventoryGUI {
 	public int[] contentSlots = new int[]{ 2, 3, 4, 5, 6 };
 	public List<ItemStack> inventoryContents = new ArrayList<>();
 
-	public APagedInventoryGUI(String name, int rows) {
+	public AOldPagedInventoryGUI(String name, int rows) {
 
 		super(name, rows);
 

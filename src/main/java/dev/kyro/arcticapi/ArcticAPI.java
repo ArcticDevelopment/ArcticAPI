@@ -3,7 +3,8 @@ package dev.kyro.arcticapi;
 import dev.kyro.arcticapi.data.AConfig;
 import dev.kyro.arcticapi.data.APlayerData;
 import dev.kyro.arcticapi.events.armor.ArmorListener;
-import dev.kyro.arcticapi.gui.AInventoryGUIManager;
+import dev.kyro.arcticapi.gui.AGUIManager;
+import dev.kyro.arcticapi.guiold.AOldInventoryGUIManager;
 import dev.kyro.arcticapi.hooks.APAPIExpansion;
 import dev.kyro.arcticapi.hooks.enums.SupportedPlugins;
 import org.bukkit.Bukkit;
@@ -44,7 +45,8 @@ public class ArcticAPI {
 		APlayerData.init();
 		SupportedPlugins.getHooks();
 
-		Bukkit.getPluginManager().registerEvents(new AInventoryGUIManager(), INSTANCE);
+		Bukkit.getPluginManager().registerEvents(new AGUIManager(), INSTANCE);
+		Bukkit.getPluginManager().registerEvents(new AOldInventoryGUIManager(), INSTANCE);
 		Bukkit.getPluginManager().registerEvents(new APlayerData(), INSTANCE);
 		Bukkit.getPluginManager().registerEvents(new ArmorListener(), INSTANCE);
 	}

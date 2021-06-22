@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.gui;
+package dev.kyro.arcticapi.guiold;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -8,8 +8,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-@SuppressWarnings("unused")
-public abstract class AInventoryGUI implements InventoryHolder {
+@Deprecated
+public abstract class AOldInventoryGUI implements InventoryHolder {
 
 	/**
 	 * The default to a gui. Changing this changes
@@ -17,7 +17,7 @@ public abstract class AInventoryGUI implements InventoryHolder {
 	 */
 	public Inventory baseGUI;
 
-	public AInventoryGUI(String name, int rows) {
+	public AOldInventoryGUI(String name, int rows) {
 
 		baseGUI = Bukkit.createInventory(this, getSlots(rows), name);
 	}
@@ -44,7 +44,7 @@ public abstract class AInventoryGUI implements InventoryHolder {
 	 * The inventory is cloned so modified versions of
 	 * an inventory can be easily displayed.
 	 *
-	 * @return a clone of {@link AInventoryGUI#baseGUI}
+	 * @return a clone of {@link AOldInventoryGUI#baseGUI}
 	 */
 	@Override
 	public Inventory getInventory() {

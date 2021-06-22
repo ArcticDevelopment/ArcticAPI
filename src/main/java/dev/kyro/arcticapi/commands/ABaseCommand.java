@@ -77,8 +77,6 @@ public abstract class ABaseCommand implements CommandExecutor, ACommand {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		List<String> argsList = new ArrayList<>(Arrays.asList(args));
 
-		System.out.println(argsList);
-
 		if(args.length == 0) {
 
 			executeBase(sender, argsList);
