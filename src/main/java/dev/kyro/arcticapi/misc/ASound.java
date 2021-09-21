@@ -3,6 +3,7 @@ package dev.kyro.arcticapi.misc;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.Collection;
@@ -56,6 +57,23 @@ public class ASound {
 	}
 
 	public static void play(Player player, Sound sound, float vol, float pitch) {
+
+		player.playSound(player.getLocation(), sound, vol, pitch);
+	}
+
+	public static void play(LivingEntity entity, Sound sound) {
+
+		play(entity, sound, 1);
+	}
+
+	public static void play(LivingEntity entity, Sound sound, float pitch) {
+
+		play(entity, sound, 1000, pitch);
+	}
+
+	public static void play(LivingEntity entity, Sound sound, float vol, float pitch) {
+		if(!(entity instanceof Player)) return;
+		Player player = (Player) entity;
 
 		player.playSound(player.getLocation(), sound, vol, pitch);
 	}

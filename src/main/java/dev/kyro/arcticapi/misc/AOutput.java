@@ -4,6 +4,7 @@ import dev.kyro.arcticapi.ArcticAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 @SuppressWarnings("unused")
@@ -29,6 +30,14 @@ public class AOutput {
 
 			log(message);
 		}
+	}
+
+	public static void send(LivingEntity entity, String message) {
+		if(entity instanceof Player) send((Player) entity, message);
+	}
+
+	public static void error(LivingEntity entity, String message) {
+		if(entity instanceof Player) error((Player) entity, message);
 	}
 
 	public static void sendIfPlayer(CommandSender sender, String message) {
