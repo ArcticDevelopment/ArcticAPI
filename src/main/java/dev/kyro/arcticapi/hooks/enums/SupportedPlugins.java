@@ -1,7 +1,5 @@
 package dev.kyro.arcticapi.hooks.enums;
 
-import dev.kyro.arcticapi.hooks.AHook;
-import dev.kyro.arcticapi.hooks.pluginhooks.SaberFactionsHook;
 import dev.kyro.arcticapi.misc.AOutput;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -83,7 +81,7 @@ public enum SupportedPlugins {
             if (plugin.isPluginLoaded()) {
                 switch (plugin) {
                     case SABER_FACTIONS:
-                        AHook.factionsPlugin = new SaberFactionsHook();
+//                        AHook.factionsPlugin = new SaberFactionsHook();
                         return;
                 }
             }
