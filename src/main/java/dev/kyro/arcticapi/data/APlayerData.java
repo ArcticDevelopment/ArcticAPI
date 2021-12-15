@@ -51,14 +51,14 @@ public class APlayerData implements Listener {
 		if(!folder.exists()) return;
 
 		Player player = event.getPlayer();
-		APlayer aPlayer = getPlayerData(player);
 
 		new BukkitRunnable() {
 			@Override
 			public void run() {
+				APlayer aPlayer = getPlayerData(player);
 				updateDefaultFields(player, aPlayer);
 			}
-		}.runTaskLater(ArcticAPI.INSTANCE, 10L);
+		}.runTaskLater(ArcticAPI.INSTANCE, 1L);
 	}
 
 	public static APlayer getPlayerData(OfflinePlayer player) {
