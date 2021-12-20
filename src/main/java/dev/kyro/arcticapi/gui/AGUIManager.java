@@ -18,9 +18,9 @@ public class AGUIManager implements Listener {
 
 		InventoryHolder holder = event.getInventory().getHolder();
 		if(!(holder instanceof AGUIPanel)) return;
-		event.setCancelled(true);
-
 		AGUIPanel guiPanel = (AGUIPanel) holder;
+		if(guiPanel.cancelClicks) event.setCancelled(true);
+
 		Player player = (Player) event.getWhoClicked();
 		if(event.getClickedInventory() == null || event.getCurrentItem() == null) return;
 

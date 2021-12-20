@@ -19,6 +19,8 @@ public abstract class AGUIPanel implements InventoryHolder {
 	private final Inventory inventory;
 	public AInventoryBuilder inventoryBuilder;
 
+	public boolean cancelClicks = true;
+
 	public AGUIPanel(AGUI gui) {
 		this.player = gui.player;
 		this.gui = gui;
