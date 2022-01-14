@@ -30,6 +30,22 @@ public class APlayerData implements Listener {
 		}
 	}
 
+//	@EventHandler(priority = EventPriority.MONITOR)
+//	public static void onJoin(PlayerJoinEvent event) {
+//		File folder = new File(ArcticAPI.INSTANCE.getDataFolder(), "playerdata/");
+//		if(!folder.exists()) return;
+//
+//		Player player = event.getPlayer();
+//
+//		new BukkitRunnable() {
+//			@Override
+//			public void run() {
+//				APlayer aPlayer = getPlayerData(player);
+//				aPlayer.playerData.set("name", player.getName());
+//			}
+//		}.runTaskLater(ArcticAPI.INSTANCE, 1L);
+//	}
+
 	public static APlayer getPlayerData(OfflinePlayer player) {
 		return getPlayerData(player.getUniqueId());
 	}
@@ -42,6 +58,20 @@ public class APlayerData implements Listener {
 	public static APlayer getPlayerData(UUID uuid) {
 		if(!storedPlayers.containsKey(uuid)) return createPlayerData(uuid);
 		return new APlayer(uuid, storedPlayers.get(uuid));
+
+//		File folder = new File(ArcticAPI.INSTANCE.getDataFolder(), "playerdata/");
+//		if(!folder.exists()) folder.mkdirs();
+//		File[] files = folder.listFiles();
+//		for(File file : files) {
+//			if(!file.isFile() || !file.getName().endsWith(".yml")) continue;
+//			try {
+//				UUID pUUID = UUID.fromString(file.getName().replaceFirst("[.][^.]+$", ""));
+//				if(!pUUID.equals(uuid)) continue;
+//				return new APlayer(pUUID, file);
+//			} catch(Exception ignored) {}
+//		}
+//		assert false;
+//		return null;
 	}
 
 	public static Map<UUID, APlayer> getAllData() {
@@ -50,6 +80,18 @@ public class APlayerData implements Listener {
 			playerMap.put(entry.getKey(), new APlayer(entry.getKey(), entry.getValue()));
 		}
 		return playerMap;
+
+//		File folder = new File(ArcticAPI.INSTANCE.getDataFolder(), "playerdata/");
+//		if(!folder.exists()) return playerMap;
+//		File[] files = folder.listFiles();
+//		for(File file : files) {
+//			if(!file.isFile() || !file.getName().endsWith(".yml")) continue;
+//			try {
+//				UUID pUUID = UUID.fromString(file.getName().replaceFirst("[.][^.]+$", ""));
+//				playerMap.put(pUUID, new APlayer(pUUID, file));
+//			} catch(Exception ignored) {}
+//		}
+//		return playerMap;
 	}
 
 	private static APlayer createPlayerData(UUID uuid) {
