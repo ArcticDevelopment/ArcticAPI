@@ -1,39 +1,24 @@
 package dev.kyro.arcticapi;
 
-import dev.kyro.arcticapi.commands.ABaseCommand;
-import dev.kyro.arcticapi.misc.AOutput;
+import dev.kyro.arcticapi.commands.AMultiCommand;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class TestBase extends ABaseCommand {
+public class TestBase extends AMultiCommand {
 
 	public TestBase(String baseCommand) {
 		super(baseCommand);
 	}
 
-	@Override
-	public void executeBase(CommandSender sender, List<String> args) {
-
-		if(sender instanceof Player) {
-
-			AOutput.send((Player) sender, "Base command");
-		} else {
-
-			System.out.println("Base command");
-		}
+	public TestBase(AMultiCommand base, String executor) {
+		super(base, executor);
 	}
 
 	@Override
-	public void executeFail(CommandSender sender, List<String> args) {
-
-		if(sender instanceof Player) {
-
-			AOutput.send((Player) sender, "fail");
-		} else {
-
-			System.out.println("fail");
-		}
+	public void execute(CommandSender sender, Command command, String alias, List<String> args) {
+		createHelp().send((Player) sender);
 	}
 }

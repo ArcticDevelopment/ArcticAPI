@@ -1,10 +1,12 @@
 package dev.kyro.arcticapi.commands;
 
-import java.util.List;
+public abstract class ACommand extends ACommandBase {
 
-@SuppressWarnings("unused")
-public interface ACommand {
+	public ACommand(String executor) {
+		super(executor);
+	}
 
-	String getExecutor();
-	List<String> getAliases();
+	public ACommand(AMultiCommand base, String executor) {
+		super(base, executor);
+	}
 }

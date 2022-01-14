@@ -6,3 +6,7 @@ description: API test
 softdepend: [ HolographicDisplays, WorldGuard ]
 commands:
   api:
+  atest:
+    aliases:
+      - atest2
+      - atest3

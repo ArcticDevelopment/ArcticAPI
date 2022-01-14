@@ -9,8 +9,8 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestCommand extends ACommand {
-	public TestCommand(AMultiCommand base, String executor) {
+public class TestCommand2 extends ACommand {
+	public TestCommand2(AMultiCommand base, String executor) {
 		super(base, executor);
 	}
 
@@ -22,8 +22,8 @@ public class TestCommand extends ACommand {
 	@Override
 	public List<String> getTabComplete(Player player, String current, List<String> args) {
 		ArrayList<String> tabComplete = new ArrayList<>();
-		tabComplete.add("test1");
-		tabComplete.add("command1");
+		tabComplete.add("test2");
+		tabComplete.add("command2");
 		return tabComplete;
 	}
 }
