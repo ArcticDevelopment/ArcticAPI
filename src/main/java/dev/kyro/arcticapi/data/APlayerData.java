@@ -47,9 +47,6 @@ public class APlayerData implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public static void onJoin(PlayerJoinEvent event) {
-		File folder = new File(ArcticAPI.INSTANCE.getDataFolder(), "playerdata/");
-		if(!folder.exists()) return;
-
 		Player player = event.getPlayer();
 		APlayer aPlayer = getPlayerData(player);
 
