@@ -80,7 +80,7 @@ public class APlayerData implements Listener {
 			if(!file.isFile() || !file.getName().endsWith(".yml")) continue;
 			try {
 				UUID pUUID = UUID.fromString(file.getName().replaceFirst("[.][^.]+$", ""));
-				if(!pUUID.equals(uuid)) continue;
+				if(pUUID != uuid) continue;
 				return new APlayer(pUUID, file);
 			} catch(Exception ignored) {}
 		}
