@@ -11,7 +11,6 @@ import org.bukkit.inventory.InventoryHolder;
 
 @SuppressWarnings("unused")
 public abstract class AGUIPanel implements InventoryHolder {
-
 	public Player player;
 	public AGUI gui;
 	public AGUIPanel previousGUI;

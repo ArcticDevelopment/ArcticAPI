@@ -12,7 +12,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public abstract class ABaseCommand implements CommandExecutor, ACommand {
-
 	private final List<ACommand> subCommands = new ArrayList<>();
 
 	private String executor;

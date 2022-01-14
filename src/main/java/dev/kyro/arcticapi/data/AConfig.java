@@ -10,7 +10,6 @@ import java.util.Map;
 
 @SuppressWarnings("unused")
 public class AConfig {
-
 	private static FileConfiguration config = ArcticAPI.INSTANCE.getConfig();
 
 	public static void set(String path, LinkedHashMap<String, Object> map) {

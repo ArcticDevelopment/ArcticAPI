@@ -6,6 +6,5 @@ import java.util.List;
 public interface ACommand {
 
 	String getExecutor();
-
 	List<String> getAliases();
 }

@@ -12,7 +12,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class AItemStackBuilder {
-
 	private final ItemStack itemStack;
 	private ItemMeta itemMeta;
 

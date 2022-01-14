@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.hooks;
+package dev.kyro.arcticapi.hooks.papi;
 
 import org.bukkit.entity.Player;
 
@@ -6,6 +6,5 @@ import org.bukkit.entity.Player;
 public interface APAPIPlaceholder {
 
 	String getIdentifier();
-
 	String getValue(Player player);
 }

@@ -11,7 +11,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class AData {
-
 	private final File dataFile;
 	private FileConfiguration configuration;
 

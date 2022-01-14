@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.hooks;
+package dev.kyro.arcticapi.hooks.papi;
 
 import dev.kyro.arcticapi.ArcticAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -10,7 +10,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class APAPIExpansion extends PlaceholderExpansion {
-
 	public static List<APAPIPlaceholder> registeredPlaceholders = new ArrayList<>();
 
 	private final String identifier;

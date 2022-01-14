@@ -7,7 +7,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public abstract class ASubCommand implements ACommand {
-
 	private String executor;
 	private List<String> aliases = new ArrayList<>();
 

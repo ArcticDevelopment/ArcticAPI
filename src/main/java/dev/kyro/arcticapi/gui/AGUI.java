@@ -7,7 +7,6 @@ import java.util.Map;
 
 @SuppressWarnings("unused")
 public class AGUI {
-
 	public Player player;
 
 	private AGUIPanel homePanel;

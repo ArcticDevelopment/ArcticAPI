@@ -9,7 +9,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class AMessageBuilder {
-
 	private List<String> message = new ArrayList<>();
 
 	/**

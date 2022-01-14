@@ -13,7 +13,6 @@ import java.util.TreeMap;
 
 @SuppressWarnings("unused")
 public class AUtil {
-
 	private final static TreeMap<Integer, String> map = new TreeMap<>();
 
 	static {

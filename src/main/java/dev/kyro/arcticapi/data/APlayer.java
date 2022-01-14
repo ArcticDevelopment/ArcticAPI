@@ -11,7 +11,6 @@ import java.util.UUID;
 
 @SuppressWarnings("unused")
 public class APlayer {
-
 	public UUID pUUID;
 	public OfflinePlayer offlinePlayer;
 	public File playerFile;

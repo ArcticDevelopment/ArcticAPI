@@ -41,7 +41,6 @@ public class ASerializer {
 	public static ItemStack deserializeItem(ConfigurationSection configSection) {
 
 		try {
-
 			Material material = Material.getMaterial(configSection.getString("material"));
 			int amount = configSection.getInt("amount");
 			int data = configSection.getInt("data");

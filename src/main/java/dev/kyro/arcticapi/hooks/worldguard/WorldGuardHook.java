@@ -1,4 +1,4 @@
-package dev.kyro.arcticapi.hooks.pluginhooks;
+package dev.kyro.arcticapi.hooks.worldguard;
 
 import com.google.common.collect.Lists;
 import com.sk89q.worldguard.bukkit.RegionContainer;
@@ -14,6 +14,7 @@ import org.bukkit.Location;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class WorldGuardHook {
 
 	public static void registerFlag(String name, boolean def) {
@@ -49,5 +50,4 @@ public class WorldGuardHook {
 		}
 		return false;
 	}
-
 }

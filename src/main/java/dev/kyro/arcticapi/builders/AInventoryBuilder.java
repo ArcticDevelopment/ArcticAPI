@@ -12,7 +12,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class AInventoryBuilder {
-
 	private final Inventory inventory;
 
 	/**

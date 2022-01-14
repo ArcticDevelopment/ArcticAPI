@@ -9,7 +9,6 @@ import java.util.List;
 
 @SuppressWarnings("unused")
 public class ALoreBuilder {
-
 	private List<String> lore = new ArrayList<>();
 
 	/**
