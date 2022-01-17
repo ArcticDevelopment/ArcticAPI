@@ -45,7 +45,7 @@ abstract class ACommandBase implements CommandExecutor, TabCompleter {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String alias, String[] argsArray) {
-		List<String> args = Arrays.asList(argsArray);
+		List<String> args = new ArrayList<>(Arrays.asList(argsArray));
 
 		execute(sender, command, alias, args);
 		return false;

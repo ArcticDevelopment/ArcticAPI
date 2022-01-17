@@ -1,6 +1,8 @@
 package dev.kyro.arcticapi.commands;
 
 import dev.kyro.arcticapi.builders.AMessageBuilder;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -17,13 +19,32 @@ public abstract class AMultiCommand extends ACommandBase {
 		super(base, executor);
 	}
 
-	public void registerCommand(ACommandBase subCommand) {
+	protected void registerCommand(ACommandBase subCommand) {
 
 		subCommands.add(subCommand);
 	}
 
 	public List<ACommandBase> getSubCommands() {
 		return subCommands;
+	}
+
+	@Override
+	public void execute(CommandSender sender, Command command, String alias, List<String> args) {
+
+		if(args.isEmpty()) {
+			if(sender instanceof Player) createHelp().send((Player) sender);
+			return;
+		}
+
+		for(ACommandBase subCommand : subCommands) {
+			if(!subCommand.getExecutor().equals(args.get(0))) continue;
+			args.remove(0);
+
+			subCommand.execute(sender, command, alias, args);
+			return;
+		}
+
+		if(sender instanceof Player) createHelp().send((Player) sender);
 	}
 
 	public List<String> getTabComplete(Player player, String current, List<String> args) {
