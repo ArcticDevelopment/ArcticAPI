@@ -76,21 +76,10 @@ public class AItemStackBuilder {
 	/**
 	 * Adds an enchant glint to the item.
 	 * @param hideFlag whether to add the item flag that hides enchants
+	 * @deprecated method literally doesn't work :/
 	 */
+	@Deprecated
 	public AItemStackBuilder addEnchantGlint(boolean hideFlag) {
-
-		if(itemStack.getType() == Material.AIR) return this;
-
-		itemStack.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
-		if(hideFlag) {
-			itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-			updateItemMeta();
-		}
-
-		return this;
-	}
-
-	public AItemStackBuilder addEnchantGlintTest(boolean hideFlag) {
 
 		if(itemStack.getType() == Material.AIR) return this;
 
