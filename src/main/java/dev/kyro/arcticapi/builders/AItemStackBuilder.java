@@ -91,7 +91,16 @@ public class AItemStackBuilder {
 	}
 
 	public AItemStackBuilder addEnchantGlintTest(boolean hideFlag) {
-		return addEnchantGlint(hideFlag);
+
+		if(itemStack.getType() == Material.AIR) return this;
+
+		itemStack.addUnsafeEnchantment(Enchantment.WATER_WORKER, 1);
+		if(hideFlag) {
+			itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+			updateItemMeta();
+		}
+
+		return this;
 	}
 
 	/**
