@@ -15,17 +15,25 @@ public abstract class AGUIPanel implements InventoryHolder {
 	public AGUI gui;
 	public AGUIPanel previousGUI;
 
-	private final Inventory inventory;
+	private Inventory inventory;
 	public AInventoryBuilder inventoryBuilder;
 
 	public boolean cancelClicks = true;
 
 	public AGUIPanel(AGUI gui) {
+		this(gui, false);
+	}
+
+	/**
+	 * @param lateBuild used to prevent the constructor from creating the inventory.
+	 *                  The method must be called manually in the subclass
+	 *                  construction with the method
+	 */
+	public AGUIPanel(AGUI gui, boolean lateBuild) {
 		this.player = gui.player;
 		this.gui = gui;
 
-		inventory = Bukkit.createInventory(this, getSlots(getRows()), getName());
-		inventoryBuilder = new AInventoryBuilder(inventory);
+		if(!lateBuild) buildInventory();
 	}
 
 	public abstract String getName();
@@ -74,5 +82,10 @@ public abstract class AGUIPanel implements InventoryHolder {
 	private static int getSlots(int rows) {
 
 		return Math.max(Math.min(rows, 6), 1) * 9;
+	}
+
+	public void buildInventory() {
+		inventory = Bukkit.createInventory(this, getSlots(getRows()), getName());
+		inventoryBuilder = new AInventoryBuilder(inventory);
 	}
 }
