@@ -5,6 +5,7 @@ import dev.kyro.arcticapi.builders.AInventoryBuilder;
 import dev.kyro.arcticapi.misc.AUtil;
 import dev.kyro.arcticapi.misc.NBTTag;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -97,7 +98,8 @@ public abstract class AGUIPanel implements InventoryHolder {
 	}
 
 	public void buildInventory() {
-		inventory = Bukkit.createInventory(this, getSlots(getRows()), getName());
+		inventory = Bukkit.createInventory(this, getSlots(getRows()),
+				ChatColor.translateAlternateColorCodes('&', getName()));
 		inventoryBuilder = new AInventoryBuilder(inventory);
 	}
 
