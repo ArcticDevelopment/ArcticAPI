@@ -126,6 +126,10 @@ public abstract class AGUIPanel implements InventoryHolder {
 		backItem = addTaggedItem(slot, AGUIManager.getBackItemStack(), event -> openPreviousGUI());
 	}
 
+	public void setInventory() {
+		if(backItem != null) backItem.setItem();
+	}
+
 	public class TaggedItem {
 		private int slot;
 		private final String tag;
