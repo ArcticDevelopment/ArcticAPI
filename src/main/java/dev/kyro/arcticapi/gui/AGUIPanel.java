@@ -119,8 +119,8 @@ public abstract class AGUIPanel implements InventoryHolder {
 		return nbtItem.getString(NBTTag.ITEM_TAG.getRef());
 	}
 
-	public void setBackButton(int slot) {
-		addTaggedItem(slot, AGUIManager.getBackItemStack(), event -> openPreviousGUI());
+	public TaggedItem setBackButton(int slot) {
+		return addTaggedItem(slot, AGUIManager.getBackItemStack(), event -> openPreviousGUI());
 	}
 
 	public class TaggedItem {
