@@ -1,5 +1,6 @@
 package dev.kyro.arcticapi.builders;
 
+import dev.kyro.arcticapi.misc.AUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -30,17 +31,22 @@ public class AInventoryBuilder {
 		this.inventory = inventory;
 	}
 
+	public AInventoryBuilder createBorder(Material material, int data) {
+		return createBorder(material, data, true);
+	}
+
 	/**
 	 * Creates a border going around the outside of the GUI.
 	 */
-	public AInventoryBuilder createBorder(Material material, int toData) {
+	public AInventoryBuilder createBorder(Material material, int toData, boolean overwrite) {
 
 		byte data = (byte) toData;
 
 		for(int i = 0; i < inventory.getSize(); i++) {
 
 			if(i < 9 || i > inventory.getSize() - 10 || i % 9 == 8 || i % 9 == 0) {
-
+				ItemStack itemStack = inventory.getItem(i);
+				if(!overwrite && !AUtil.isAirOrNull(itemStack)) continue;
 				inventory.setItem(i, new ItemStack(material, 1, data));
 			}
 		}

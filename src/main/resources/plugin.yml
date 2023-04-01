@@ -5,8 +5,6 @@ main: dev.kyro.arcticapi.Main
 description: API test
 softdepend: [ HolographicDisplays, WorldGuard ]
 commands:
-  api:
-  atest:
+  aapi:
     aliases:
-      - atest2
-      - atest3
+      - api

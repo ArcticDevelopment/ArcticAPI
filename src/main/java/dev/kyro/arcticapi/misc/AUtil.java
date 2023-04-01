@@ -2,6 +2,7 @@ package dev.kyro.arcticapi.misc;
 
 import dev.kyro.arcticapi.ArcticAPI;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -29,6 +30,10 @@ public class AUtil {
 		map.put(5, "V");
 		map.put(4, "IV");
 		map.put(1, "I");
+	}
+
+	public static boolean isAirOrNull(ItemStack itemStack) {
+		return itemStack == null || itemStack.getType() == Material.AIR;
 	}
 
 	public static String toRoman(int number) {

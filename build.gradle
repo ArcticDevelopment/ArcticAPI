@@ -32,6 +32,7 @@ dependencies {
     compileOnly 'com.gmail.filoghost.holographicdisplays:holographicdisplays-api:2.4.0'
     compileOnly 'com.sk89q.worldguard:worldguard-legacy:6.2'
     compileOnly 'me.clip:placeholderapi:2.10.9'
+    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.8.0'
 
 //    Factions Plugins
 //    compileOnly 'com.github.SaberLLC:Saber-Factions:2.4.0-RC'

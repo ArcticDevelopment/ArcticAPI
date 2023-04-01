@@ -1,13 +1,23 @@
 package dev.kyro.arcticapi.gui;
 
+import de.tr7zw.nbtapi.NBTItem;
 import dev.kyro.arcticapi.builders.AInventoryBuilder;
+import dev.kyro.arcticapi.misc.AUtil;
+import dev.kyro.arcticapi.misc.NBTTag;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
 public abstract class AGUIPanel implements InventoryHolder {
@@ -19,6 +29,8 @@ public abstract class AGUIPanel implements InventoryHolder {
 	public AInventoryBuilder inventoryBuilder;
 
 	public boolean cancelClicks = true;
+	
+	public final Map<String, TaggedItem> taggedItemMap = new HashMap<>();
 
 	public AGUIPanel(AGUI gui) {
 		this(gui, false);
@@ -87,5 +99,74 @@ public abstract class AGUIPanel implements InventoryHolder {
 	public void buildInventory() {
 		inventory = Bukkit.createInventory(this, getSlots(getRows()), getName());
 		inventoryBuilder = new AInventoryBuilder(inventory);
+	}
+
+	public TaggedItem getGUIItem(String tag) {
+		return taggedItemMap.get(tag);
+	}
+	
+	public TaggedItem addTaggedItem(int slot, ItemStack itemStack, Consumer<InventoryClickEvent> callback) {
+		UUID uuid = UUID.randomUUID();
+		TaggedItem taggedItem = new TaggedItem(slot, uuid.toString(), itemStack, callback);
+		taggedItemMap.put(uuid.toString(), taggedItem);
+		return taggedItem;
+	}
+	
+	public String getTagFromItem(ItemStack itemStack) {
+		if(AUtil.isAirOrNull(itemStack)) return null;
+		NBTItem nbtItem = new NBTItem(itemStack, true);
+		if(!nbtItem.hasKey(NBTTag.ITEM_TAG.getRef())) return null;
+		return nbtItem.getString(NBTTag.ITEM_TAG.getRef());
+	}
+
+	public void setBackButton(int slot) {
+		addTaggedItem(slot, AGUIManager.getBackItemStack(), event -> openPreviousGUI());
+	}
+
+	public class TaggedItem {
+		private int slot;
+		private final String tag;
+		private final ItemStack itemStack;
+		private final Consumer<InventoryClickEvent> callback;
+
+		public TaggedItem(String tag, ItemStack itemStack, Consumer<InventoryClickEvent> callback) {
+			this(-1, tag, itemStack, callback);
+		}
+
+		public TaggedItem(int slot, String tag, ItemStack itemStack, Consumer<InventoryClickEvent> callback) {
+			this.slot = slot;
+			this.tag = tag;
+			this.itemStack = itemStack.clone();
+			this.callback = callback;
+		}
+
+		public void setItem() {
+			if(slot == -1) return;
+			getInventory().setItem(slot, getTaggedItemStack());
+		}
+
+		public void removeItem() {
+			if(slot == -1) return;
+			getInventory().setItem(slot, new ItemStack(Material.AIR));
+		}
+
+		public String getTag() {
+			return tag;
+		}
+
+		public ItemStack getNormalItemStack() {
+			return itemStack;
+		}
+
+		public ItemStack getTaggedItemStack() {
+			ItemStack itemStack = getNormalItemStack();
+			NBTItem nbtItem = new NBTItem(itemStack, true);
+			nbtItem.setString(NBTTag.ITEM_TAG.getRef(), tag);
+			return itemStack;
+		}
+
+		public Consumer<InventoryClickEvent> getCallback() {
+			return callback;
+		}
 	}
 }
