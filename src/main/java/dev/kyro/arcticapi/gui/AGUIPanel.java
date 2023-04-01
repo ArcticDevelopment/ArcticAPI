@@ -32,6 +32,7 @@ public abstract class AGUIPanel implements InventoryHolder {
 	public boolean cancelClicks = true;
 	
 	public final Map<String, TaggedItem> taggedItemMap = new HashMap<>();
+	private TaggedItem backItem;
 
 	public AGUIPanel(AGUI gui) {
 		this(gui, false);
@@ -121,8 +122,8 @@ public abstract class AGUIPanel implements InventoryHolder {
 		return nbtItem.getString(NBTTag.ITEM_TAG.getRef());
 	}
 
-	public TaggedItem setBackButton(int slot) {
-		return addTaggedItem(slot, AGUIManager.getBackItemStack(), event -> openPreviousGUI());
+	public void setBackButton(int slot) {
+		backItem = addTaggedItem(slot, AGUIManager.getBackItemStack(), event -> openPreviousGUI());
 	}
 
 	public class TaggedItem {
