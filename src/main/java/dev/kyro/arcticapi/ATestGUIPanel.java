@@ -18,7 +18,7 @@ public class ATestGUIPanel extends APagedGUIPanel {
 	public void addItems() {
 		for(int i = 0; i < 64; i++) {
 			int finalI = i;
-			addItem(new ItemStack(Material.BAKED_POTATO, i + 1), event -> {
+			addItem(() -> new ItemStack(Material.BAKED_POTATO, finalI + 1), event -> {
 				System.out.println("You clicked potato: " + (finalI + 1));
 			});
 		}

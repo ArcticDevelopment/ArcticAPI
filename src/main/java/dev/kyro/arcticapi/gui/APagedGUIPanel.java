@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public abstract class APagedGUIPanel extends AGUIPanel {
@@ -28,12 +29,12 @@ public abstract class APagedGUIPanel extends AGUIPanel {
 		super(gui, true);
 		addItems();
 
-		previousPage = addTaggedItem(getRows() * 9 - 9, AGUIManager.getPreviousPageItemStack(), event -> {
+		previousPage = addTaggedItem(getRows() * 9 - 9, AGUIManager::getPreviousPageItemStack, event -> {
 			if(page == 1) return;
 			page--;
 			setInventory();
 		});
-		nextPage = addTaggedItem(getRows() * 9 - 1, AGUIManager.getNextPageItemStack(), event -> {
+		nextPage = addTaggedItem(getRows() * 9 - 1, AGUIManager::getNextPageItemStack, event -> {
 			if(page == getMaxPages()) return;
 			page++;
 			setInventory();
@@ -71,11 +72,11 @@ public abstract class APagedGUIPanel extends AGUIPanel {
 		return (items.size() - 1) / allowedSlots.size() + 1;
 	}
 
-	public void addItem(ItemStack itemStack) {
+	public void addItem(Supplier<ItemStack> itemStack) {
 		addItem(itemStack, null);
 	}
 
-	public void addItem(ItemStack itemStack, Consumer<InventoryClickEvent> callback) {
+	public void addItem(Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
 		items.add(new TaggedItem(UUID.randomUUID().toString(), itemStack, callback));
 	}
 

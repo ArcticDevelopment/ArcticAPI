@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public abstract class AGUIPanel implements InventoryHolder {
@@ -108,7 +109,7 @@ public abstract class AGUIPanel implements InventoryHolder {
 		return taggedItemMap.get(tag);
 	}
 	
-	public TaggedItem addTaggedItem(int slot, ItemStack itemStack, Consumer<InventoryClickEvent> callback) {
+	public TaggedItem addTaggedItem(int slot, Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
 		UUID uuid = UUID.randomUUID();
 		TaggedItem taggedItem = new TaggedItem(slot, uuid.toString(), itemStack, callback);
 		taggedItemMap.put(uuid.toString(), taggedItem);
@@ -123,7 +124,7 @@ public abstract class AGUIPanel implements InventoryHolder {
 	}
 
 	public void addBackButton(int slot) {
-		backItem = addTaggedItem(slot, AGUIManager.getBackItemStack(), event -> openPreviousGUI());
+		backItem = addTaggedItem(slot, AGUIManager::getBackItemStack, event -> openPreviousGUI());
 	}
 
 	public void setInventory() {
@@ -136,14 +137,14 @@ public abstract class AGUIPanel implements InventoryHolder {
 		private final ItemStack itemStack;
 		private final Consumer<InventoryClickEvent> callback;
 
-		public TaggedItem(String tag, ItemStack itemStack, Consumer<InventoryClickEvent> callback) {
+		public TaggedItem(String tag, Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
 			this(-1, tag, itemStack, callback);
 		}
 
-		public TaggedItem(int slot, String tag, ItemStack itemStack, Consumer<InventoryClickEvent> callback) {
+		public TaggedItem(int slot, String tag, Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
 			this.slot = slot;
 			this.tag = tag;
-			this.itemStack = itemStack.clone();
+			this.itemStack = itemStack.get().clone();
 			this.callback = callback;
 		}
 
