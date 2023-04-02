@@ -134,7 +134,7 @@ public abstract class AGUIPanel implements InventoryHolder {
 	public class TaggedItem {
 		private int slot;
 		private final String tag;
-		private final ItemStack itemStack;
+		private final Supplier<ItemStack> itemStack;
 		private final Consumer<InventoryClickEvent> callback;
 
 		public TaggedItem(String tag, Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
@@ -144,7 +144,7 @@ public abstract class AGUIPanel implements InventoryHolder {
 		public TaggedItem(int slot, String tag, Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
 			this.slot = slot;
 			this.tag = tag;
-			this.itemStack = itemStack.get().clone();
+			this.itemStack = itemStack;
 			this.callback = callback;
 		}
 
@@ -163,7 +163,7 @@ public abstract class AGUIPanel implements InventoryHolder {
 		}
 
 		public ItemStack getNormalItemStack() {
-			return itemStack;
+			return itemStack.get().clone();
 		}
 
 		public ItemStack getTaggedItemStack() {
