@@ -83,7 +83,11 @@ public abstract class APagedGUIPanel extends AGUIPanel {
 	@Override
 	public void setInventory() {
 		super.setInventory();
-		for(Integer allowedSlot : allowedSlots) getInventory().setItem(allowedSlot, new ItemStack(Material.AIR));
+		for(int i = 0; i < allowedSlots.size(); i++) {
+			if((i - 1) / 7 + 3 > getRows()) continue;
+			int slot = allowedSlots.get(i);
+			getInventory().setItem(slot, new ItemStack(Material.AIR));
+		}
 		for(TaggedItem item : items) {
 			if(getPage(item) != page) continue;
 			getInventory().setItem(getSlot(item), item.getTaggedItemStack());
