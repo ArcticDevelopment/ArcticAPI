@@ -124,7 +124,11 @@ public abstract class AGUIPanel implements InventoryHolder {
 	}
 
 	public void addBackButton(int slot) {
-		backItem = addTaggedItem(slot, AGUIManager::getBackItemStack, event -> openPreviousGUI());
+		addBackButton(addTaggedItem(slot, AGUIManager::getBackItemStack, event -> openPreviousGUI()));
+	}
+
+	public void addBackButton(TaggedItem taggedItem) {
+		backItem = taggedItem;
 	}
 
 	public void setInventory() {
