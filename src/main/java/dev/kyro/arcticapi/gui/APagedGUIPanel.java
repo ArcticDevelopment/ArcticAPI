@@ -72,8 +72,8 @@ public abstract class APagedGUIPanel extends AGUIPanel {
 		return (items.size() - 1) / allowedSlots.size() + 1;
 	}
 
-	public void addItem(Supplier<ItemStack> itemStack) {
-		addItem(itemStack, null);
+	public TaggedItem addItem(Supplier<ItemStack> itemStack) {
+		return addItem(itemStack, null);
 	}
 
 	public TaggedItem addItem(Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
