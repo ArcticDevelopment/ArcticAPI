@@ -76,8 +76,10 @@ public abstract class APagedGUIPanel extends AGUIPanel {
 		addItem(itemStack, null);
 	}
 
-	public void addItem(Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
-		items.add(new TaggedItem(UUID.randomUUID().toString(), itemStack, callback));
+	public TaggedItem addItem(Supplier<ItemStack> itemStack, Consumer<InventoryClickEvent> callback) {
+		TaggedItem taggedItem = new TaggedItem(UUID.randomUUID().toString(), itemStack, callback);
+		items.add(taggedItem);
+		return taggedItem;
 	}
 
 	@Override
