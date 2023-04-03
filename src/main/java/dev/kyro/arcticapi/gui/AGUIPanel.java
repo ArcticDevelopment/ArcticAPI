@@ -152,14 +152,16 @@ public abstract class AGUIPanel implements InventoryHolder {
 			this.callback = callback;
 		}
 
-		public void setItem() {
-			if(slot == -1) return;
+		public TaggedItem setItem() {
+			if(slot == -1) return this;
 			getInventory().setItem(slot, getTaggedItemStack());
+			return this;
 		}
 
-		public void removeItem() {
-			if(slot == -1) return;
+		public TaggedItem removeItem() {
+			if(slot == -1) return this;
 			getInventory().setItem(slot, new ItemStack(Material.AIR));
+			return this;
 		}
 
 		public String getTag() {
