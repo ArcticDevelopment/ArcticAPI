@@ -64,7 +64,7 @@ public class AGUIManager implements Listener {
 			String testTag = entry.getKey();
 			AGUIPanel.TaggedItem taggedItem = entry.getValue();
 			if(!tag.equals(testTag)) continue;
-			taggedItem.getCallback().accept(event);
+			if(taggedItem.getCallback() != null) taggedItem.getCallback().accept(event);
 			break;
 		}
 	}

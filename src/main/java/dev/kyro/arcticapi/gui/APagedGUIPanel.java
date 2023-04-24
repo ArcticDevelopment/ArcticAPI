@@ -56,9 +56,9 @@ public abstract class APagedGUIPanel extends AGUIPanel {
 		ItemStack clickedItem = event.getCurrentItem();
 		String tag = getTagFromItem(clickedItem);
 		if(tag == null) return;
-		for(TaggedItem item : items) {
-			if(item.getTag() == null || !item.getTag().equals(tag)) continue;
-			item.getCallback().accept(event);
+		for(TaggedItem taggedItem : items) {
+			if(taggedItem.getTag() == null || !taggedItem.getTag().equals(tag)) continue;
+			if(taggedItem.getCallback() != null) taggedItem.getCallback().accept(event);
 		}
 	}
 
